@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const services = [
+  { tier: 'Foundation', name: 'Marketing Data Audit', price: '$2,000 – $3,000', description: 'Map your data flow, identify attribution gaps, evaluate your tool stack, and get a prioritized roadmap of what to fix first.', question: 'Where is my data actually broken?' },
+  { tier: 'Foundation', name: 'Omni-Channel Dashboard', price: '$3,000 – $6,000', description: 'A single source of truth across all ad platforms, analytics, and CRM. Automated refresh. Anomaly alerts. No more Friday data pulls.', question: "Why doesn't our data agree?" },
+  { tier: 'Measurement', name: 'Attribution Modeling', price: '$5,000 – $10,000', description: 'Find out which channels are actually driving conversions — not just claiming credit. Multi-touch models that update as new data flows in.', question: 'Which channel deserves credit?' },
+  { tier: 'Measurement', name: 'Media Mix Modeling', price: '$8,000 – $15,000', description: 'Model your next quarter before you commit the budget. Lightweight MMM with scenario planning — no data science team required.', question: 'Where should budget go next quarter?' },
+  { tier: 'Measurement', name: 'Incrementality Testing', price: '$6,000 – $12,000', description: 'Find out which campaigns drive net-new customers vs. cannibalizing existing ones. Holdout design, execution, and AI-assisted readout.', question: 'What is actually incremental?' },
+  { tier: 'Automation', name: 'Automated Reporting', price: '$2,000 – $4,000', description: 'Client reports and executive decks generated automatically on schedule. Your team stops building slides and starts doing analysis.', question: 'Why is my team still doing this manually?' },
+  { tier: 'AI', name: 'AI Stack Design', price: '$5,000 – $10,000', description: 'Audit your current stack for AI readiness, design the agentic layer, and select the right orchestration framework. You get a blueprint — not a vendor recommendation.', question: 'How do we actually start building with AI?' },
+  { tier: 'AI', name: 'Agentic Reporting Workflows', price: '$4,000 – $8,000', description: 'Replace your weekly manual reporting cycle with AI agents that monitor performance, surface anomalies, and narrate insights — automatically, on schedule.', question: 'Can AI replace our reporting process?' },
+  { tier: 'AI', name: 'AI-Powered Analytics', price: '$6,000 – $12,000', description: 'Connect your data warehouse to LLMs for natural language querying, automated insight generation, and AI-assisted scenario planning on top of your existing stack.', question: 'How do we get AI to work with our data?' },
+];
+
+const tierColor: Record<string, string> = {
+  Foundation: 'var(--amber)',
+  Measurement: 'var(--blue)',
+  Automation: 'var(--sage)',
+  AI: 'var(--purple)',
+};
+---
+
+<Layout
+  title="Clearpath Analytics — Marketing Intelligence for CMOs"
+  description="We help marketing teams get clarity on what's driving revenue, prove it to their CFO, and stop wasting their best people on manual reporting."
+  keywords={['marketing analytics', 'marketing attribution', 'media mix modeling', 'CMO dashboard', 'marketing data engineering', 'incrementality testing']}
+>
+
+  <!-- ── HERO ─── -->
+  <section style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:88px 48px 80px;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;">
+      <div>
+        <span class="section-label">Marketing Intelligence Consulting</span>
+        <h1 style="font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:22px;">
+          Finally know which marketing is working — and <em style="font-style:italic;color:var(--amber);">prove it</em> to your CFO.
+        </h1>
+        <p style="font-size:18px;color:var(--ink-mid);line-height:1.75;margin-bottom:36px;max-width:480px;">
+          We help marketing teams cut through fragmented data, find what's actually driving revenue, and walk into budget reviews with answers — not apologies.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;">
+          <a href="#audit" class="btn-primary" style="font-size:15px;padding:12px 24px;">Book a free strategy call →</a>
+          <a href="/blog" class="btn-secondary" style="font-size:15px;padding:12px 24px;">Read the blog</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:28px;border-top:1.5px solid var(--border);">
+          <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Ex-TapClicks · Founding PM</span>
+          <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Yahoo · Adobe</span>
+          <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Forbes Technology Council</span>
+          <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Cornell MBA + MS CS</span>
+        </div>
+      </div>
+
+      <!-- Insight card -->
+      <div style="background:var(--cream);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:5px 5px 0 rgba(28,25,23,0.1);">
+        <div style="font-family:var(--font-accent);font-size:13px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+          Live benchmark snapshot
+          <span style="flex:1;height:1.5px;background:var(--border);display:block;"></span>
+        </div>
+        {[
+          { label: 'Google Ads CPC', value: '$4.82', badge: '+34% vs peers', type: 'bad' },
+          { label: 'Meta ROAS', value: '2.4×', badge: 'Below median', type: 'warn' },
+          { label: 'Attribution overlap', value: '61%', badge: 'Double-counted', type: 'bad' },
+          { label: 'Incremental ROAS', value: '1.8×', badge: 'Improving', type: 'good' },
+        ].map(m => (
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border-soft);">
+            <span style="font-size:13px;color:var(--ink-mid);flex:1;">{m.label}</span>
+            <span style="font-family:var(--font-serif);font-size:15px;font-weight:600;color:var(--ink);">{m.value}</span>
+            <span style={`font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px;${m.type==='bad'?'background:var(--rust-light);color:var(--rust);':m.type==='warn'?'background:var(--amber-light);color:var(--amber);':'background:var(--sage-light);color:var(--sage);'}`}>{m.badge}</span>
+          </div>
+        ))}
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1.5px solid var(--border);">
+          <p style="font-size:13px;color:var(--ink-mid);margin:0;">Shift <strong style="color:var(--amber);">$30K Meta → YouTube</strong> to improve blended ROAS.</p>
+          <a href="#audit" class="btn-primary" style="font-size:12px;padding:7px 14px;">See full audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── PROBLEM ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">The reality</span>
+      <h2 class="section-title">Sound familiar?</h2>
+      <p class="section-sub">Every CMO we talk to is living one of these three moments on repeat.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:40px;">
+        <div class="card" style="border-left:4px solid var(--rust);">
+          <span style="font-size:28px;display:block;margin-bottom:14px;">📊</span>
+          <h3 style="font-size:17px;margin-bottom:10px;">The CFO meeting</h3>
+          <p style="font-size:14px;line-height:1.75;">"Google says ROAS 4.2. Meta says 3.8. Your CRM says neither matches pipeline. The CFO asks which channel to cut. You don't have a clean answer."</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--amber);">
+          <span style="font-size:28px;display:block;margin-bottom:14px;">⏱</span>
+          <h3 style="font-size:17px;margin-bottom:10px;">The reporting tax</h3>
+          <p style="font-size:14px;line-height:1.75;">"Your best analyst spends Tuesday–Thursday pulling data from 8 platforms and building a deck that's outdated by Friday. That's their whole week."</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--blue);">
+          <span style="font-size:28px;display:block;margin-bottom:14px;">💸</span>
+          <h3 style="font-size:17px;margin-bottom:10px;">The budget question</h3>
+          <p style="font-size:14px;line-height:1.75;">"Next quarter's planning is here. You have last quarter's data. But you're not confident enough to stake a $300K reallocation on it."</p>
+        </div>
+      </div>
+
+      <div style="background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px 28px;max-width:640px;box-shadow:3px 3px 0 rgba(28,25,23,0.08);">
+        <p style="font-size:16px;color:var(--ink);font-weight:500;margin:0;">This is not a data problem. You have plenty of data. <strong>It's a clarity problem.</strong> That's what we fix.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── THREE QUESTIONS ─── -->
+  <section id="services">
+    <div class="section-inner">
+      <span class="section-label">How we help</span>
+      <h2 class="section-title">Three questions every CMO needs answered.</h2>
+      <p class="section-sub">We don't sell "consulting." We answer the questions that determine whether your budget gets approved or cut.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+        {[
+          { num: '01', title: "What's actually working?", body: 'Across all your channels, campaigns, and creatives — one coherent view. Which ads are converting. Which channels are delivering. Updated automatically, no manual assembly.', points: ['Omni-channel dashboard', 'Automated client reporting', 'Creative & campaign performance'] },
+          { num: '02', title: 'Why is it working?', body: 'Which campaigns drove net-new customers versus cannibalizing existing ones? Which channel deserves credit — and which one is just claiming it? Real attribution, not last-click guesswork.', points: ['Multi-touch attribution modeling', 'Incrementality testing', 'Channel contribution analysis'] },
+          { num: '03', title: 'Where should budget go next?', body: "Model your next quarter before you commit. See how shifting $50K from paid social to search changes projected outcomes. Walk into CFO planning with a number, not a guess.", points: ['Media mix modeling', 'Budget scenario planning', 'Quarterly planning readouts'] },
+        ].map(q => (
+          <div style="padding:32px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);">
+            <div style="font-family:var(--font-accent);font-size:28px;font-weight:700;color:var(--amber);margin-bottom:4px;">{q.num}</div>
+            <h3 style="font-size:19px;margin-bottom:12px;">{q.title}</h3>
+            <p style="font-size:15px;color:var(--ink-mid);line-height:1.75;margin-bottom:20px;">{q.body}</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              {q.points.map(p => (
+                <div style="font-size:13px;color:var(--ink-mid);display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--sage);font-weight:700;">✓</span> {p}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SERVICES ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">What we build for you.</h2>
+      <p class="section-sub">Fixed-scope engagements with clear outputs. No open-ended retainers until you've seen what we can do.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;">
+        {services.map(s => (
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <span style={`font-family:var(--font-accent);font-size:14px;font-weight:600;color:${tierColor[s.tier]};`}>{s.tier}</span>
+              <span style="font-size:13px;font-weight:600;color:var(--amber);">{s.price}</span>
+            </div>
+            <h3 style="font-size:17px;margin-bottom:10px;">{s.name}</h3>
+            <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:16px;">{s.description}</p>
+            <div style="font-family:var(--font-accent);font-size:15px;font-weight:600;font-style:italic;color:var(--ink-mid);padding:10px 14px;background:var(--amber-xlight);border-left:3px solid var(--amber);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:18px;">"{s.question}"</div>
+            <a href="#audit" style="font-size:14px;font-weight:600;color:var(--amber);display:inline-flex;align-items:center;gap:4px;transition:gap 0.15s;" onmouseover="this.style.gap='8px'" onmouseout="this.style.gap='4px'">Book a call →</a>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:24px;background:var(--ink);border-radius:var(--radius);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;box-shadow:5px 5px 0 var(--amber);">
+        <div>
+          <span style="font-family:var(--font-accent);font-size:15px;color:rgba(250,247,242,0.5);display:block;margin-bottom:6px;">Ongoing</span>
+          <h3 style="font-family:var(--font-serif);font-size:22px;font-weight:600;color:var(--cream);margin-bottom:8px;">AI Ops Retainer</h3>
+          <p style="font-size:15px;color:rgba(250,247,242,0.6);max-width:480px;line-height:1.7;">Ongoing insights, model updates, new automations, and a monthly strategy session. $2,500–$8,000/mo.</p>
+        </div>
+        <a href="#audit" class="btn-cream">Let's talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── HOW WE BUILD IT ─── -->
+  <section id="how">
+    <div class="section-inner">
+      <span class="section-label">The tech layer</span>
+      <h2 class="section-title">Built on engineering that actually works.</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;">
+        <div>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:20px;">Everything we deliver runs on modern data infrastructure — clean pipelines, a single source of truth, and AI agents that monitor performance and surface insights automatically.</p>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:32px;">Data engineering and AI automation are <em>how</em> we deliver the analytics value — not what we sell.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            {['dbt', 'Snowflake', 'BigQuery', 'Google Ads API', 'Meta API', 'GA4', 'Salesforce', 'Claude AI', 'Python', 'Airbyte'].map(t => (
+              <span style="font-size:13px;font-weight:500;padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;color:var(--ink-mid);background:var(--paper);">{t}</span>
+            ))}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {[
+            { n: '01', label: 'Data consolidation', desc: 'Connect all sources. Normalize. Single source of truth.' },
+            { n: '02', label: 'Measurement layer', desc: 'Attribution, MMM, incrementality on clean data.' },
+            { n: '03', label: 'Intelligence layer', desc: 'AI agents monitor, alert, and surface insights automatically.' },
+            { n: '04', label: 'Reporting output', desc: 'Dashboards and decks generated on schedule.' },
+          ].map(s => (
+            <div style="display:flex;gap:16px;padding:18px 22px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius-sm);box-shadow:2px 2px 0 rgba(28,25,23,0.06);">
+              <span style="font-family:var(--font-accent);font-size:20px;font-weight:700;color:var(--amber);min-width:28px;">{s.n}</span>
+              <div>
+                <div style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px;">{s.label}</div>
+                <div style="font-size:14px;color:var(--ink-mid);">{s.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── ABOUT ─── -->
+  <section id="about" style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start;max-width:760px;">
+        <div style="width:76px;height:76px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:22px;font-weight:600;color:var(--cream);border:3px solid var(--cream-dark);box-shadow:3px 3px 0 var(--amber);flex-shrink:0;">AR</div>
+        <div>
+          <span class="section-label">About</span>
+          <h2 style="font-size:28px;margin-bottom:16px;">Angshuman Rudra</h2>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:16px;">For 10 years I was the founding product leader at TapClicks, building the data and AI infrastructure that marketing agencies run on — 200+ data connectors, production AI agent systems, and ETL pipelines at scale serving thousands of agencies worldwide.</p>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:28px;">Before that: Yahoo, Adobe, Xilinx. I've built the full stack — from raw ingestion through agentic workflows — and I've seen every version of the marketing data clarity problem from the inside.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="tag tag-amber">Forbes Technology Council</span>
+            <span class="tag tag-sage">Cornell MBA</span>
+            <span class="tag tag-blue">MS Computer Science</span>
+            <a href="https://www.linkedin.com/in/angshumanrudra/" target="_blank" rel="noopener" style="font-family:var(--font-accent);font-size:14px;font-weight:600;padding:4px 12px;border-radius:100px;border:1.5px solid var(--amber);color:var(--amber);text-decoration:none;">LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── BLOG ─── -->
+  <section>
+    <div class="section-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:20px;">
+        <div>
+          <span class="section-label">From the blog</span>
+          <h2 style="font-size:32px;margin:0;">Marketing data and AI systems, explained plainly.</h2>
+        </div>
+        <a href="/blog" class="btn-secondary">View all posts →</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {posts.map(post => (
+          <a href={`/blog/${post.slug}`} class="card" style="display:block;text-decoration:none;">
+            <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+              {(post.data.keywords ?? []).slice(0, 2).map((k: string) => (
+                <span class="tag tag-amber">{k}</span>
+              ))}
+            </div>
+            <h3 style="font-size:17px;margin-bottom:10px;line-height:1.35;">{post.data.title}</h3>
+            <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:20px;">{post.data.description}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:13px;color:var(--ink-dim);">{post.data.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</span>
+              <span style="font-family:var(--font-accent);font-size:15px;font-weight:600;color:var(--amber);">Read →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── CONTACT / AUDIT CTA ─── -->
+  <section id="audit" style="background:var(--cream-dark);border-top:1.5px solid var(--border);">
+    <div class="section-inner" style="padding-bottom:96px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+        <!-- Left: copy -->
+        <div>
+          <span class="section-label">Get in touch</span>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:16px;line-height:1.15;">Start with a Marketing Data Audit.</h2>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:24px;">Two hours. We map your data flow, find the gaps, and give you a prioritized roadmap of exactly what to fix first.</p>
+          <div style="background:var(--ink);border-radius:var(--radius);padding:24px 28px;box-shadow:4px 4px 0 var(--amber);margin-bottom:28px;">
+            <span style="font-family:var(--font-accent);font-size:22px;font-weight:600;color:var(--amber);display:block;margin-bottom:4px;">$2,000 flat</span>
+            <p style="font-size:14px;color:rgba(250,247,242,0.6);line-height:1.6;">Most clients book an implementation engagement directly after. No commitment. No sales pitch.</p>
+          </div>
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;">
+            {['We review your current stack and data flows', 'You get a written roadmap with priorities and costs', 'Typically delivered within 5 business days'].map(item => (
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ink-mid);line-height:1.6;">
+                <span style="color:var(--amber);font-weight:700;margin-top:1px;">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: form -->
+        <div>
+          <form id="contact-form" style="background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Name *</label>
+                <input id="cf-name" type="text" placeholder="Jane Smith" required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+              </div>
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Email *</label>
+                <input id="cf-email" type="email" placeholder="jane@company.com" required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+              </div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Company</label>
+              <input id="cf-company" type="text" placeholder="Acme Digital" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+            </div>
+            <div style="margin-bottom:24px;">
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">What's the main challenge? *</label>
+              <textarea id="cf-message" rows="4" placeholder="e.g. We're running paid on 6 platforms and can't tell which campaigns are actually driving revenue..." required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;resize:vertical;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            </div>
+            <button type="submit" id="cf-submit" class="btn-primary" style="width:100%;font-size:15px;padding:13px;justify-content:center;">Book a Strategy Call →</button>
+            <div id="cf-success" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(77,124,95,0.08);border:1.5px solid rgba(77,124,95,0.25);border-radius:8px;font-size:14px;color:var(--sage);line-height:1.6;">
+              ✓ Message sent! I'll be in touch within 1 business day.
+            </div>
+            <div id="cf-error" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(194,65,12,0.07);border:1.5px solid rgba(194,65,12,0.2);border-radius:8px;font-size:14px;color:var(--rust);line-height:1.6;">
+              Something went wrong. Please email me directly at angshuman.rudra@gmail.com
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const btn = document.getElementById('cf-submit') as HTMLButtonElement;
+    const success = document.getElementById('cf-success') as HTMLElement;
+    const errorEl = document.getElementById('cf-error') as HTMLElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.textContent = 'Sending…';
+      btn.setAttribute('disabled', 'true');
+      success.style.display = 'none';
+      errorEl.style.display = 'none';
+
+      const name = (document.getElementById('cf-name') as HTMLInputElement).value;
+      const email = (document.getElementById('cf-email') as HTMLInputElement).value;
+      const company = (document.getElementById('cf-company') as HTMLInputElement).value;
+      const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, company, message }),
+        });
+        if (res.ok) {
+          success.style.display = 'block';
+          form.reset();
+        } else {
+          errorEl.style.display = 'block';
+        }
+      } catch {
+        errorEl.style.display = 'block';
+      } finally {
+        btn.textContent = 'Book a Strategy Call →';
+        btn.removeAttribute('disabled');
+      }
+    });
+  </script>
+
+</Layout>

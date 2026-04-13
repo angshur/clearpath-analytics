@@ -1,0 +1,642 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="AI Automation Audit — Find Your Highest-ROI Opportunities"
+  description="5 questions. A personalized breakdown of where AI automation would move the needle for your team — specific to your stack, your role, and your biggest time drains."
+  keywords={['AI automation audit', 'AI readiness', 'AI stack', 'marketing AI', 'agentic AI']}
+>
+
+<style>
+  .audit-hero {
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--border);
+    padding: 72px 48px 64px;
+    text-align: center;
+  }
+  .audit-hero-inner { max-width: 600px; margin: 0 auto; }
+  .audit-hero h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .audit-hero p {
+    font-size: 18px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+  .audit-hero .meta {
+    font-size: 13px;
+    color: var(--ink-dim);
+    margin-bottom: 0;
+  }
+
+  /* ── QUIZ WRAPPER ─── */
+  .quiz-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* ── PROGRESS ─── */
+  .progress-bar-wrap {
+    margin-bottom: 40px;
+  }
+  .progress-label {
+    font-size: 13px;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── QUESTION CARD ─── */
+  .question-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    animation: slideUp 0.3s ease both;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .question-eyebrow {
+    font-family: var(--font-accent);
+    font-size: 15px;
+    color: var(--amber);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .question-text {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+
+  /* ── OPTIONS ─── */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    width: 100%;
+    text-align: left;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .option-btn:hover {
+    border-color: var(--amber);
+    background: var(--amber-xlight);
+    transform: translateX(3px);
+  }
+  .option-btn.selected {
+    border-color: var(--amber);
+    background: var(--amber-light);
+    box-shadow: 3px 3px 0 var(--amber);
+    transform: translateX(-1px);
+  }
+  .option-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  /* ── RESULTS ─── */
+  #results { display: none; animation: slideUp 0.4s ease both; }
+
+  .results-header {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .score-ring {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-number span:first-child {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .score-number span:last-child {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .score-label {
+    font-family: var(--font-accent);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .score-desc {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .results-section-label {
+    font-family: var(--font-accent);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 14px;
+    margin-top: 36px;
+  }
+
+  .opportunity-cards { display: flex; flex-direction: column; gap: 12px; }
+  .opportunity-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    box-shadow: 2px 2px 0 rgba(28,25,23,0.06);
+  }
+  .opportunity-card h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .opportunity-card p {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .opportunity-num {
+    font-family: var(--font-accent);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .start-box {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-top: 12px;
+    box-shadow: 4px 4px 0 var(--amber);
+  }
+  .start-box h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .start-box p {
+    font-size: 14px;
+    color: rgba(250,247,242,0.65);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── EMAIL CAPTURE ─── */
+  .email-capture {
+    background: var(--cream-dark);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px;
+    margin-top: 28px;
+  }
+  .email-capture h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .email-capture p {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .email-row {
+    display: flex;
+    gap: 10px;
+  }
+  .email-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: var(--font-body);
+    background: white;
+    color: var(--ink);
+    transition: border-color 0.15s;
+    min-width: 0;
+  }
+  .email-input:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .email-success {
+    display: none;
+    padding: 12px 16px;
+    background: var(--sage-light);
+    border: 1.5px solid rgba(77,124,95,0.25);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--sage);
+    margin-top: 12px;
+  }
+
+  /* ── RESTART ─── */
+  .restart-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--ink-dim);
+    cursor: pointer;
+    padding: 0;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    transition: color 0.15s;
+  }
+  .restart-btn:hover { color: var(--ink); }
+
+  @media (max-width: 600px) {
+    .audit-hero { padding: 48px 20px 40px; }
+    .quiz-wrapper { padding: 40px 20px 72px; }
+    .question-card { padding: 28px 24px; }
+    .results-header { grid-template-columns: 1fr; }
+    .score-ring { margin: 0 auto; }
+    .email-row { flex-direction: column; }
+    .email-capture { padding: 24px 20px; }
+  }
+</style>
+
+<!-- HERO -->
+<section class="audit-hero">
+  <div class="audit-hero-inner">
+    <span class="section-label">AI Automation Audit</span>
+    <h1>Find out where AI would actually move the needle for your team.</h1>
+    <p>Five questions. A personalized breakdown of your highest-ROI AI automation opportunities — matched to your role, your stack, and your biggest time drains.</p>
+    <p class="meta">Takes about 90 seconds. No login required.</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<div class="quiz-wrapper">
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressLabel">Question 1 of 5</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTION DISPLAY -->
+  <div id="quizArea"></div>
+
+  <!-- RESULTS -->
+  <div id="results"></div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    id: 'team',
+    eyebrow: 'Question 1 of 5',
+    text: 'What type of team are you?',
+    options: [
+      { icon: '📣', label: 'Marketing / Growth', value: 'marketing' },
+      { icon: '📊', label: 'Data & Analytics', value: 'data' },
+      { icon: '💼', label: 'Revenue / Sales Ops', value: 'revenue' },
+      { icon: '⚙️', label: 'Operations / Finance', value: 'operations' },
+    ]
+  },
+  {
+    id: 'pain',
+    eyebrow: 'Question 2 of 5',
+    text: "What's your biggest time drain right now?",
+    options: [
+      { icon: '📋', label: 'Manual reporting and data pulls', value: 'reporting' },
+      { icon: '🔍', label: 'Researching competitors or market trends', value: 'competitors' },
+      { icon: '✍️', label: 'Writing briefs, docs, or analysis', value: 'writing' },
+      { icon: '💡', label: 'Finding insights buried in performance data', value: 'insights' },
+      { icon: '🔄', label: 'Coordinating across tools and systems', value: 'coordinating' },
+    ]
+  },
+  {
+    id: 'infra',
+    eyebrow: 'Question 3 of 5',
+    text: 'How mature is your data infrastructure?',
+    options: [
+      { icon: '📄', label: 'Spreadsheets and platform exports', value: 'sheets', score: 5 },
+      { icon: '🗄️', label: 'We have a data warehouse (Snowflake, BigQuery, etc.)', value: 'warehouse', score: 20 },
+      { icon: '🔧', label: 'Warehouse + transformation layer (dbt)', value: 'dbt', score: 30 },
+      { icon: '🚀', label: 'Full modern stack with clean, reliable models', value: 'full', score: 40 },
+    ]
+  },
+  {
+    id: 'automation',
+    eyebrow: 'Question 4 of 5',
+    text: 'How much of your current work is automated?',
+    options: [
+      { icon: '🖐️', label: 'Almost nothing — most things are manual', value: 'none', score: 5 },
+      { icon: '🔁', label: 'Some reports run automatically, but analysis is manual', value: 'some', score: 15 },
+      { icon: '🧩', label: "We have automation, but it's patchy and fragile", value: 'patchy', score: 20 },
+      { icon: '✅', label: 'Solid automation already in place', value: 'solid', score: 30 },
+    ]
+  },
+  {
+    id: 'goal',
+    eyebrow: 'Question 5 of 5',
+    text: "What's your primary goal with AI?",
+    options: [
+      { icon: '⏰', label: 'Save team time on repetitive tasks', value: 'time', score: 15 },
+      { icon: '⚡', label: 'Get faster insights from our data', value: 'speed', score: 20 },
+      { icon: '🤖', label: 'Build agents that take actions automatically', value: 'agents', score: 25 },
+      { icon: '🎯', label: 'All of the above — we want to move as fast as possible', value: 'all', score: 30 },
+    ]
+  },
+];
+
+const opportunityMap = {
+  marketing: {
+    reporting:    { agents: ['Performance Anomaly Monitor', 'Weekly Insights Narrator', 'Attribution Reconciler'], desc: ['Detects performance drops and budget waste across all paid channels automatically.', 'Delivers a written narrative of last week\'s marketing performance every Monday morning.', 'Surfaces discrepancies between Google, Meta, and your attribution tool — so you know which number to trust.'] },
+    competitors:  { agents: ['Competitive Creative Monitor', 'Market Intelligence Brief', 'Share of Voice Tracker'], desc: ['Tracks competitor ad creative weekly and delivers a structured brief of what changed.', 'Aggregates signals across industry sources into a weekly competitive intelligence summary.', 'Monitors competitor channel presence and alerts you to meaningful shifts.'] },
+    writing:      { agents: ['Campaign Brief Generator', 'Performance Summary Writer', 'Creative Briefing Agent'], desc: ['Generates structured campaign briefs from goals and audience inputs.', 'Turns raw performance data into a readable summary with highlighted findings.', 'Creates detailed creative briefs for designers from campaign strategy and brand guidelines.'] },
+    insights:     { agents: ['Weekly Insights Narrator', 'Budget Allocation Optimizer', 'Attribution Reconciler'], desc: ['Synthesizes performance data into actionable insights with supporting evidence each week.', 'Recommends budget reallocations based on performance trends and efficiency targets.', 'Identifies which platform\'s numbers to trust — and by how much.'] },
+    coordinating: { agents: ['Cross-Platform Status Reporter', 'Campaign Pacing Monitor', 'Weekly Insights Narrator'], desc: ['Pulls status from all ad platforms into one daily briefing automatically.', 'Monitors budget pacing across campaigns and alerts when spend is off track.', 'Delivers a structured weekly summary across all channels without manual assembly.'] },
+  },
+  data: {
+    reporting:    { agents: ['Data Quality Monitor', 'Pipeline Health Agent', 'Automated Anomaly Explainer'], desc: ['Runs data quality checks on your warehouse daily and surfaces failures before stakeholders notice.', 'Monitors your ELT pipeline health and alerts on failures with context about downstream impact.', 'Detects anomalies in key metrics and generates plain-language explanations of what changed.'] },
+    competitors:  { agents: ['Market Intelligence Agent', 'Industry Signal Monitor', 'Benchmark Tracker'], desc: ['Aggregates competitor product and pricing signals into a weekly digest.', 'Monitors industry news and surfaces signals relevant to your data strategy.', 'Tracks how your metrics compare to published industry benchmarks over time.'] },
+    writing:      { agents: ['Documentation Generator', 'Data Dictionary Agent', 'Insight Narrator'], desc: ['Generates dbt model documentation from schema definitions automatically.', 'Keeps your data dictionary up to date as models change.', 'Translates SQL results into plain-language explanations for non-technical stakeholders.'] },
+    insights:     { agents: ['Automated Insight Generator', 'Natural Language Query Agent', 'Anomaly Explainer'], desc: ['Scans your warehouse for statistically meaningful changes and surfaces the most important ones.', 'Lets stakeholders ask questions about your data in plain English and get SQL-backed answers.', 'Detects metric anomalies and generates root cause hypotheses automatically.'] },
+    coordinating: { agents: ['Pipeline Monitor', 'Data SLA Tracker', 'Cross-Team Data Request Agent'], desc: ['Monitors all data pipelines and sends structured alerts when jobs fail or run long.', 'Tracks data freshness SLAs and proactively surfaces when data is at risk of going stale.', 'Routes and tracks data requests from stakeholders, reducing back-and-forth.'] },
+  },
+  revenue: {
+    reporting:    { agents: ['Pipeline Health Monitor', 'Sales Performance Narrator', 'Revenue Forecast Agent'], desc: ['Monitors your sales pipeline daily and surfaces deals at risk before they slip.', 'Delivers a written narrative of sales performance weekly — no manual deck required.', 'Generates forward-looking revenue projections based on pipeline state and historical close rates.'] },
+    competitors:  { agents: ['Competitive Intelligence Brief', 'Win/Loss Pattern Analyzer', 'Pricing Signal Monitor'], desc: ['Tracks competitor product, pricing, and positioning changes and delivers a weekly brief.', 'Identifies patterns in your win/loss data to surface what predicts outcomes.', 'Monitors competitor pricing signals and customer sentiment across public sources.'] },
+    writing:      { agents: ['Proposal Draft Generator', 'Call Summary Agent', 'Follow-up Email Agent'], desc: ['Generates first-draft proposals from deal context, requirements, and pricing inputs.', 'Summarizes sales calls with key points, objections, and recommended next actions.', 'Drafts personalized follow-up emails based on call notes and deal stage.'] },
+    insights:     { agents: ['Deal Risk Identifier', 'Revenue Forecast Agent', 'Pipeline Trend Analyzer'], desc: ['Scores deals by risk using CRM signals and flags ones that need attention this week.', 'Projects end-of-quarter revenue based on pipeline state, stage velocity, and historical data.', 'Identifies patterns in how deals move through the pipeline and where they stall.'] },
+    coordinating: { agents: ['CRM Hygiene Agent', 'Lead Routing Agent', 'Handoff Summary Generator'], desc: ['Monitors CRM for incomplete or stale records and prompts reps to update them.', 'Routes incoming leads to the right rep based on territory, score, and capacity.', 'Generates structured handoff summaries when deals move between reps or to CS.'] },
+  },
+  operations: {
+    reporting:    { agents: ['Automated Status Reports', 'KPI Monitor Agent', 'Executive Summary Generator'], desc: ['Generates weekly status reports across projects from structured inputs automatically.', 'Monitors your key operational metrics and alerts on meaningful deviations.', 'Produces concise executive summaries from operational data on a weekly schedule.'] },
+    competitors:  { agents: ['Market Research Agent', 'Industry Benchmark Tracker', 'Trend Signal Monitor'], desc: ['Aggregates market and competitive signals relevant to your operating context.', 'Tracks how your operational metrics compare to industry benchmarks over time.', 'Monitors industry news and surfaces signals relevant to your planning.'] },
+    writing:      { agents: ['Process Documentation Agent', 'Meeting Summary Agent', 'SOP Generator'], desc: ['Generates and maintains process documentation from structured workflow inputs.', 'Summarizes meetings with decisions, action items, and owners — ready to share in minutes.', 'Creates standard operating procedures from process descriptions and edge case inputs.'] },
+    insights:     { agents: ['Operational Bottleneck Detector', 'Cost Variance Agent', 'Efficiency Opportunity Finder'], desc: ['Identifies where workflows slow down and surfaces patterns across teams and time periods.', 'Tracks budget vs. actual variance and flags categories running off-plan.', 'Analyzes operational data to surface where automation would have the highest ROI.'] },
+    coordinating: { agents: ['Project Update Agent', 'Cross-Team Status Sync', 'Dependency Tracker'], desc: ['Collects project updates from each owner and compiles them into a single summary.', 'Generates a unified status view across teams from structured inputs.', 'Monitors project dependencies and alerts when upstream delays threaten downstream work.'] },
+  },
+};
+
+const startingPoints = {
+  low:  "Before building agents, consolidate your data into a single source of truth. Without reliable, centralized data, AI agents will amplify the noise — not the signal. A data audit is the right first step.",
+  mid:  "You're ready to build your first agent. Start with the monitoring agent above — it's the fastest path from your current setup to measurable time savings, and it builds organizational trust in AI outputs.",
+  high: "Your infrastructure is ready for real automation. Start with a monitoring agent to prove reliability, then extend to synthesis and recommendation agents. You're ready for a multi-agent pipeline within a quarter.",
+};
+
+const scoreLabels = {
+  low:  { label: 'Getting Ready', desc: "Your foundation needs some work before agents will be reliable. The opportunity is real — but infrastructure comes first. A 4–6 week investment in your data layer will 10x the value of everything you build after." },
+  mid:  { label: 'Good Foundation', desc: "You have the infrastructure to start building real agents today. The quick wins are large and the first builds don't need to be complex. Start narrow, prove reliability, then expand." },
+  high: { label: 'Ship It', desc: "Your stack is ready for meaningful AI automation. You can move directly to multi-step agents that take actions — not just surface insights. The constraint now is prioritization, not infrastructure." },
+};
+
+let answers = {};
+let currentQ = 0;
+let infraScore = 0;
+let automationScore = 0;
+let goalScore = 0;
+
+function getScoreTier(score) {
+  if (score <= 35) return 'low';
+  if (score <= 65) return 'mid';
+  return 'high';
+}
+
+function updateProgress(step) {
+  const pct = Math.round((step / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = step < questions.length
+    ? `Question ${step + 1} of ${questions.length}`
+    : 'Complete';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function renderQuestion(index) {
+  const q = questions[index];
+  const area = document.getElementById('quizArea');
+  area.innerHTML = `
+    <div class="question-card">
+      <span class="question-eyebrow">${q.eyebrow}</span>
+      <p class="question-text">${q.text}</p>
+      <div class="options">
+        ${q.options.map(o => `
+          <button class="option-btn" data-value="${o.value}" data-score="${o.score || 0}">
+            <span class="option-icon">${o.icon}</span>
+            ${o.label}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  area.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      area.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      const val = btn.dataset.value;
+      const score = parseInt(btn.dataset.score || '0');
+      answers[q.id] = val;
+
+      if (q.id === 'infra')       infraScore = score;
+      if (q.id === 'automation')  automationScore = score;
+      if (q.id === 'goal')        goalScore = score;
+
+      setTimeout(() => {
+        currentQ++;
+        updateProgress(currentQ);
+        if (currentQ < questions.length) {
+          renderQuestion(currentQ);
+        } else {
+          showResults();
+        }
+      }, 280);
+    });
+  });
+}
+
+function showResults() {
+  document.getElementById('quizArea').innerHTML = '';
+  document.getElementById('progressWrap').style.display = 'none';
+
+  const totalScore = Math.min(100, infraScore + automationScore + goalScore);
+  const tier = getScoreTier(totalScore);
+  const { label, desc } = scoreLabels[tier];
+  const startText = startingPoints[tier];
+
+  const team = answers.team || 'marketing';
+  const pain = answers.pain || 'reporting';
+  const opps = opportunityMap[team][pain];
+
+  // SVG ring
+  const radius = 46;
+  const circ = 2 * Math.PI * radius;
+  const dash = (totalScore / 100) * circ;
+
+  const resultsEl = document.getElementById('results');
+  resultsEl.style.display = 'block';
+  resultsEl.innerHTML = `
+    <div class="results-header">
+      <div class="score-ring">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="${radius}" fill="none" stroke="var(--border)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="${radius}" fill="none" stroke="var(--amber)" stroke-width="8"
+            stroke-dasharray="${dash.toFixed(1)} ${circ.toFixed(1)}"
+            stroke-linecap="round"/>
+        </svg>
+        <div class="score-number">
+          <span>${totalScore}</span>
+          <span>/ 100</span>
+        </div>
+      </div>
+      <div>
+        <div class="score-label">${label}</div>
+        <p class="score-desc">${desc}</p>
+      </div>
+    </div>
+
+    <span class="results-section-label">Your top 3 AI automation opportunities</span>
+    <div class="opportunity-cards">
+      ${opps.agents.map((agent, i) => `
+        <div class="opportunity-card">
+          <span class="opportunity-num">0${i + 1}</span>
+          <h3>${agent}</h3>
+          <p>${opps.desc[i]}</p>
+        </div>
+      `).join('')}
+    </div>
+
+    <span class="results-section-label">Where to start</span>
+    <div class="start-box">
+      <h3>Recommended first step</h3>
+      <p>${startText}</p>
+    </div>
+
+    <div class="email-capture">
+      <h2>Get your full build sequence.</h2>
+      <p>Enter your email and we'll send you a step-by-step breakdown — which agents to build first, what data you need, and realistic timelines based on your answers.</p>
+      <div class="email-row">
+        <input type="email" class="email-input" id="auditEmail" placeholder="you@company.com" />
+        <button class="btn-primary" id="auditSubmit" type="button">Send it →</button>
+      </div>
+      <div class="email-success" id="auditSuccess">
+        ✓ On its way. Check your inbox — usually arrives within a few minutes.
+      </div>
+    </div>
+
+    <button class="restart-btn" id="restartBtn">Start over ↺</button>
+  `;
+
+  document.getElementById('auditSubmit').addEventListener('click', async () => {
+    const email = document.getElementById('auditEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('auditEmail').focus();
+      return;
+    }
+    const btn = document.getElementById('auditSubmit');
+    btn.textContent = 'Sending…';
+    btn.setAttribute('disabled', 'true');
+
+    const summary = `AI Audit results — Score: ${totalScore}/100 (${label})\nTeam: ${team} | Pain: ${pain}\nTop agents: ${opps.agents.join(', ')}\nInfra: ${answers.infra} | Automation: ${answers.automation} | Goal: ${answers.goal}`;
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'AI Audit Lead', email, company: '', message: summary }),
+      });
+    } catch(_) {}
+
+    document.getElementById('auditSuccess').style.display = 'block';
+    btn.textContent = 'Sent ✓';
+  });
+
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    answers = {};
+    currentQ = 0;
+    infraScore = 0; automationScore = 0; goalScore = 0;
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'block';
+    updateProgress(0);
+    renderQuestion(0);
+  });
+}
+
+// Init
+updateProgress(0);
+renderQuestion(0);
+</script>
+
+</Layout>

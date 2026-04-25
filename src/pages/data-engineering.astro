@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stack = ['Airbyte', 'Kafka', 'Redis', 'Python', 'Postgres', 'BigQuery', 'Snowflake', 'Databricks', 'dbt', 'Airflow'];
+
+const problems = [
+  {
+    title: 'Connector rot',
+    body: 'Platform APIs change. Your connector breaks at 2am. Nobody notices until the Monday report is wrong.',
+    color: 'var(--rust)',
+  },
+  {
+    title: 'Schema drift',
+    body: 'Google Ads adds a field. Your pipeline silently drops it. Your attribution model is now wrong by an unknown amount.',
+    color: 'var(--amber)',
+  },
+  {
+    title: 'No normalization',
+    body: "Every platform defines \"click\" differently. You have 8 sources of truth and none of them agree.",
+    color: 'var(--blue)',
+  },
+];
+
+const builds = [
+  {
+    n: '01',
+    label: 'Ingestion pipelines',
+    desc: 'Airbyte-based or custom connectors for ad platforms, CRMs, and marketing tools. Reliable, monitored, alertable.',
+  },
+  {
+    n: '02',
+    label: 'Real-time event streams',
+    desc: "Kafka-based pipelines for campaign events, conversion signals, and audience updates that can't wait for a nightly batch.",
+  },
+  {
+    n: '03',
+    label: 'Redis caching layer',
+    desc: 'Fast-access layers for dashboards and reporting APIs that need sub-second response without hammering the warehouse.',
+  },
+  {
+    n: '04',
+    label: 'Normalization & deduplication',
+    desc: 'Cross-platform entity resolution. One customer record. One campaign record. Regardless of how many platforms claim ownership.',
+  },
+];
+---
+
+<Layout
+  title="Marketing Data Engineering | Clearpath Analytics"
+  description="Production-grade marketing data pipelines — Kafka, Airbyte, Redis, normalization, and real-time ingestion for marketing teams that need data they can trust."
+  keywords={['marketing data engineering', 'Kafka marketing', 'Airbyte connectors', 'marketing data pipelines', 'real-time marketing data']}
+>
+
+  <!-- ── BREADCRUMB ─── -->
+  <div style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:12px 48px;">
+      <span style="font-size:13px;color:var(--ink-dim);">
+        <a href="/" style="color:var(--ink-dim);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--ink-dim)'">Home</a>
+        <span style="margin:0 8px;">→</span>
+        <span style="color:var(--ink-mid);">Data Engineering</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── HERO ─── -->
+  <section style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:88px 48px 80px;">
+      <span class="section-label">Data Engineering</span>
+      <h1 style="font-size:clamp(32px,5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:22px;max-width:700px;">
+        Marketing data pipelines that actually run in production.
+      </h1>
+      <p style="font-size:18px;color:var(--ink-mid);line-height:1.75;margin-bottom:36px;max-width:560px;">
+        Most marketing data problems aren't analytics problems. They're pipeline problems. Bad connectors. Schema drift. No normalization layer. Data that arrives late, arrives wrong, or doesn't arrive at all.
+      </p>
+      <a href="/#audit" class="btn-primary" style="font-size:15px;padding:12px 24px;">Book a Data Architecture Review →</a>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── PROBLEM ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">What breaks in production</span>
+      <h2 class="section-title">The three failure modes every marketing pipeline hits.</h2>
+      <p class="section-sub">These aren't edge cases. They're Tuesday morning at 8am.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {problems.map(p => (
+          <div class="card" style={`border-left:4px solid ${p.color};`}>
+            <h3 style="font-size:17px;margin-bottom:10px;">{p.title}</h3>
+            <p style="font-size:14px;line-height:1.75;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── WHAT WE BUILD ─── -->
+  <section>
+    <div class="section-inner">
+      <span class="section-label">What we build</span>
+      <h2 class="section-title">Infrastructure that holds up under real load.</h2>
+      <p class="section-sub">Everything we build is monitored, alertable, and designed for the failure modes we've already seen.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:720px;">
+        {builds.map(b => (
+          <div style="display:flex;gap:20px;padding:22px 28px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);">
+            <span style="font-family:var(--font-accent);font-size:24px;font-weight:700;color:var(--amber);min-width:32px;margin-top:2px;">{b.n}</span>
+            <div>
+              <div style="font-family:var(--font-serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;">{b.label}</div>
+              <div style="font-size:15px;color:var(--ink-mid);line-height:1.7;">{b.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TECH STACK ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner" style="padding-top:64px;padding-bottom:64px;">
+      <span class="section-label">Tech stack</span>
+      <h2 class="section-title" style="margin-bottom:32px;">The tools we build on.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {stack.map(t => (
+          <span style="font-size:14px;font-weight:500;padding:7px 16px;border:1.5px solid var(--border);border-radius:100px;color:var(--ink-mid);background:var(--paper);box-shadow:2px 2px 0 rgba(28,25,23,0.06);">{t}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── EXPERIENCE CALLOUT ─── -->
+  <section>
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div class="pull-quote">
+        <p>At TapClicks I built and maintained 200+ data connectors serving thousands of marketing agencies — ingesting billions of campaign events across Google, Meta, TikTok, and 200 other platforms. I've seen every failure mode a marketing data pipeline can have.</p>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:12px;font-weight:600;color:var(--cream);flex-shrink:0;box-shadow:2px 2px 0 var(--amber);">AR</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--ink);">Angshuman Rudra</div>
+            <div style="font-size:13px;color:var(--ink-dim);">Founding PM, TapClicks · 10 years</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── FOOTER CTA ─── -->
+  <section style="background:var(--cream-dark);border-top:1.5px solid var(--border);">
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div style="background:var(--ink);border-radius:var(--radius);padding:48px;box-shadow:5px 5px 0 var(--amber);max-width:680px;">
+        <span class="section-label" style="color:rgba(250,247,242,0.5);">Get started</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--cream);margin-bottom:14px;letter-spacing:-0.01em;line-height:1.2;">Start with a Data Architecture Review.</h2>
+        <p style="font-size:16px;color:rgba(250,247,242,0.6);line-height:1.75;margin-bottom:28px;max-width:480px;">Two hours. We map your current pipeline, find the failure points, and give you a prioritized fix list. <strong style="color:var(--amber);">$2,000 flat.</strong></p>
+        <a href="/#audit" class="btn-cream">Book a review →</a>
+      </div>
+
+      <p style="margin-top:32px;font-size:14px;color:var(--ink-dim);">
+        Looking for measurement and analytics consulting?
+        <a href="/#services" style="color:var(--amber);font-weight:500;margin-left:4px;">See all services →</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>

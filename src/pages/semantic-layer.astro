@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stack = ['dbt', 'Snowflake', 'BigQuery', 'Databricks', 'Cube', 'Looker', 'Metabase', 'Sigma', 'Python'];
+
+const problems = [
+  {
+    title: 'Metric sprawl',
+    body: 'Marketing uses one definition of MQL. Sales uses another. Finance uses a third. Every dashboard is right and none of them agree.',
+    color: 'var(--rust)',
+  },
+  {
+    title: 'Logic embedded in dashboards',
+    body: 'Business rules live inside Looker calculated fields, Tableau LODs, and spreadsheet formulas. Nobody knows which one is canonical.',
+    color: 'var(--amber)',
+  },
+  {
+    title: 'No single source of truth',
+    body: 'When the CFO asks "what was our CPA last quarter?" — who answers? Which tool? Which definition?',
+    color: 'var(--blue)',
+  },
+];
+
+const builds = [
+  {
+    n: '01',
+    label: 'dbt transformation layer',
+    desc: 'All business logic defined once, in version-controlled SQL. Metrics computed upstream of every dashboard.',
+  },
+  {
+    n: '02',
+    label: 'Metric catalog',
+    desc: 'Every KPI defined: what it measures, how it\'s computed, which source it draws from, when it was last updated. Accessible to analysts and executives alike.',
+  },
+  {
+    n: '03',
+    label: 'Semantic layer integration',
+    desc: 'Connect your warehouse to a semantic layer (dbt Semantic Layer, Cube, or Metriql) so every tool — Looker, Tableau, Claude, your internal tools — queries the same definitions.',
+  },
+  {
+    n: '04',
+    label: 'Cross-platform entity resolution',
+    desc: 'One customer ID. One campaign ID. One channel taxonomy. Regardless of how many platforms define them differently.',
+  },
+];
+
+const before = [
+  '6 dashboards, 6 definitions of ROAS',
+  'Business logic in Excel',
+  'New analyst spends 3 weeks "learning the numbers"',
+  'CFO meeting requires 2 hours of prep per slide',
+];
+
+const after = [
+  'One metric catalog, one definition per KPI',
+  'Logic version-controlled in dbt',
+  'New analyst productive in 2 days',
+  'CFO meeting prep is a dashboard refresh',
+];
+---
+
+<Layout
+  title="Semantic Layer Consulting | Clearpath Analytics"
+  description="One definition of every metric, everywhere. dbt-based semantic layer design for marketing teams tired of arguing about whose numbers are right."
+  keywords={['semantic layer', 'dbt metrics', 'marketing metric definitions', 'data warehouse semantic layer', 'marketing data modeling']}
+>
+
+  <!-- ── BREADCRUMB ─── -->
+  <div style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:12px 48px;">
+      <span style="font-size:13px;color:var(--ink-dim);">
+        <a href="/" style="color:var(--ink-dim);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--ink-dim)'">Home</a>
+        <span style="margin:0 8px;">→</span>
+        <span style="color:var(--ink-mid);">Semantic Layer</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── HERO ─── -->
+  <section style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:88px 48px 80px;">
+      <span class="section-label">Semantic Layer</span>
+      <h1 style="font-size:clamp(32px,5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:22px;max-width:700px;">
+        One definition of "conversion." Everywhere. Always.
+      </h1>
+      <p style="font-size:18px;color:var(--ink-mid);line-height:1.75;margin-bottom:36px;max-width:560px;">
+        Your pipeline works. Your warehouse has data. But Google says ROAS 4.2, Meta says 3.8, and your CRM shows neither in pipeline. That's not a data problem. That's a semantic layer problem.
+      </p>
+      <a href="/#audit" class="btn-primary" style="font-size:15px;padding:12px 24px;">Book a Semantic Layer Audit →</a>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── PROBLEM ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">The definition war</span>
+      <h2 class="section-title">Three reasons your metrics never agree.</h2>
+      <p class="section-sub">The data is fine. The problem is that everyone has a different copy of the truth.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {problems.map(p => (
+          <div class="card" style={`border-left:4px solid ${p.color};`}>
+            <h3 style="font-size:17px;margin-bottom:10px;">{p.title}</h3>
+            <p style="font-size:14px;line-height:1.75;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── WHAT WE BUILD ─── -->
+  <section>
+    <div class="section-inner">
+      <span class="section-label">What we build</span>
+      <h2 class="section-title">One source of truth for every metric.</h2>
+      <p class="section-sub">Built in the warehouse, not in the dashboard.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:720px;">
+        {builds.map(b => (
+          <div style="display:flex;gap:20px;padding:22px 28px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);">
+            <span style="font-family:var(--font-accent);font-size:24px;font-weight:700;color:var(--amber);min-width:32px;margin-top:2px;">{b.n}</span>
+            <div>
+              <div style="font-family:var(--font-serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;">{b.label}</div>
+              <div style="font-size:15px;color:var(--ink-mid);line-height:1.7;">{b.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── BEFORE / AFTER ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">The difference</span>
+      <h2 class="section-title">Before and after a semantic layer.</h2>
+      <p class="section-sub">The same data team, the same analysts — with one structural change.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="before-after-grid">
+        <!-- Before -->
+        <div style="background:var(--paper);border:1.5px solid var(--border);border-top:4px solid var(--rust);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);">
+          <div style="font-family:var(--font-accent);font-size:15px;font-weight:700;color:var(--rust);margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+            ✕ Before
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            {before.map(item => (
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ink-mid);line-height:1.6;">
+                <span style="color:var(--rust);font-weight:700;margin-top:1px;flex-shrink:0;">—</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- After -->
+        <div style="background:var(--paper);border:1.5px solid var(--border);border-top:4px solid var(--sage);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);">
+          <div style="font-family:var(--font-accent);font-size:15px;font-weight:700;color:var(--sage);margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+            ✓ After
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            {after.map(item => (
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ink-mid);line-height:1.6;">
+                <span style="color:var(--sage);font-weight:700;margin-top:1px;flex-shrink:0;">→</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TECH STACK ─── -->
+  <section>
+    <div class="section-inner" style="padding-top:64px;padding-bottom:64px;">
+      <span class="section-label">Tech stack</span>
+      <h2 class="section-title" style="margin-bottom:32px;">The tools we build on.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {stack.map(t => (
+          <span style="font-size:14px;font-weight:500;padding:7px 16px;border:1.5px solid var(--border);border-radius:100px;color:var(--ink-mid);background:var(--paper);box-shadow:2px 2px 0 rgba(28,25,23,0.06);">{t}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── EXPERIENCE CALLOUT ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div class="pull-quote">
+        <p>I built the normalization and aggregation layer at TapClicks that unified campaign data from 200+ platforms into a single coherent model — so that "impressions" meant the same thing whether it came from Google, Meta, TikTok, or a DSP nobody's heard of.</p>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:12px;font-weight:600;color:var(--cream);flex-shrink:0;box-shadow:2px 2px 0 var(--amber);">AR</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--ink);">Angshuman Rudra</div>
+            <div style="font-size:13px;color:var(--ink-dim);">Founding PM, TapClicks · 10 years</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── FOOTER CTA ─── -->
+  <section style="background:var(--paper);border-top:1.5px solid var(--border);">
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div style="background:var(--ink);border-radius:var(--radius);padding:48px;box-shadow:5px 5px 0 var(--amber);max-width:680px;">
+        <span class="section-label" style="color:rgba(250,247,242,0.5);">Get started</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--cream);margin-bottom:14px;letter-spacing:-0.01em;line-height:1.2;">Start with a Semantic Layer Audit.</h2>
+        <p style="font-size:16px;color:rgba(250,247,242,0.6);line-height:1.75;margin-bottom:28px;max-width:480px;">We map your current metric definitions, find where logic is duplicated or conflicting, and give you a build plan. <strong style="color:var(--amber);">$2,000 flat.</strong></p>
+        <a href="/#audit" class="btn-cream">Book an audit →</a>
+      </div>
+
+      <p style="margin-top:32px;font-size:14px;color:var(--ink-dim);">
+        Looking for measurement and analytics consulting?
+        <a href="/#services" style="color:var(--amber);font-weight:500;margin-left:4px;">See all services →</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  @media (max-width: 640px) {
+    .before-after-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

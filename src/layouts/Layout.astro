@@ -58,14 +58,75 @@ const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath An
       Clearpath Analytics
     </a>
     <ul class="nav-links">
-      <li><a href="/#services">Services</a></li>
-      <li><a href="/#how">How It Works</a></li>
+      <li class="nav-dropdown">
+        <button aria-haspopup="true" aria-expanded="false">
+          Services <span class="nav-dropdown-caret">▾</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><span class="dropdown-group-label">For Marketing Leaders</span></li>
+          <li><a href="/#services">Services overview</a></li>
+          <div class="dropdown-divider"></div>
+          <li><span class="dropdown-group-label">For Engineering &amp; Data Teams</span></li>
+          <li><a href="/data-engineering">Data Engineering</a></li>
+          <li><a href="/semantic-layer">Semantic Layer</a></li>
+          <li><a href="/ai">AI Consulting</a></li>
+        </ul>
+      </li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/audit">AI Audit</a></li>
       <li><a href="/#about">About</a></li>
     </ul>
-    <a href="/#audit" class="btn-primary">Book a Strategy Call →</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="/#audit" class="btn-primary">Book a Strategy Call →</a>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
   </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile-menu" id="nav-mobile">
+    <button class="nav-mobile-accordion-toggle" id="nav-services-toggle">
+      Services
+      <span id="nav-services-caret" style="font-size:12px;transition:transform 0.15s;">▾</span>
+    </button>
+    <div class="nav-mobile-accordion-body" id="nav-services-body">
+      <span class="nav-mobile-group-label">For Marketing Leaders</span>
+      <a href="/#services" class="nav-mobile-sub-link">Services overview</a>
+      <span class="nav-mobile-group-label">For Engineering &amp; Data Teams</span>
+      <a href="/data-engineering" class="nav-mobile-sub-link">Data Engineering</a>
+      <a href="/semantic-layer" class="nav-mobile-sub-link">Semantic Layer</a>
+      <a href="/ai" class="nav-mobile-sub-link">AI Consulting</a>
+    </div>
+    <a href="/blog" class="nav-mobile-link">Blog</a>
+    <a href="/audit" class="nav-mobile-link">AI Audit</a>
+    <a href="/#about" class="nav-mobile-link">About</a>
+    <div style="margin-top:16px;">
+      <a href="/#audit" class="btn-primary" style="width:100%;justify-content:center;">Book a Strategy Call →</a>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('nav-mobile');
+    const servicesToggle = document.getElementById('nav-services-toggle');
+    const servicesBody = document.getElementById('nav-services-body');
+    const servicesCaret = document.getElementById('nav-services-caret');
+
+    toggle?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('open');
+    });
+
+    servicesToggle?.addEventListener('click', () => {
+      servicesBody?.classList.toggle('open');
+      if (servicesCaret) {
+        servicesCaret.style.transform = servicesBody?.classList.contains('open') ? 'rotate(180deg)' : '';
+      }
+    });
+
+    // Close mobile nav when a link is clicked
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+  </script>
 
   <main>
     <slot />

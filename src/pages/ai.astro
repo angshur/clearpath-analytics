@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stack = ['Claude AI', 'LangChain', 'Python', 'dbt', 'Snowflake', 'Helicone', 'LangSmith', 'Airbyte', 'Kafka', 'Redis', 'Temporal'];
+
+const problems = [
+  {
+    title: 'Context is bad',
+    body: 'The model is fine. The prompt is the problem. Bad context = hallucinated insights = AI your team stops trusting after week two.',
+    color: 'var(--rust)',
+  },
+  {
+    title: 'No write-back',
+    body: "Your AI surfaces an insight. Then what? If there's no action layer, you've built an expensive dashboard with worse UX.",
+    color: 'var(--amber)',
+  },
+  {
+    title: 'No observability',
+    body: "You don't know when the agent fails, why it gave a wrong answer, or how to improve it. It's a black box you're paying to run.",
+    color: 'var(--blue)',
+  },
+];
+
+const builds = [
+  {
+    n: '01',
+    label: 'Agentic reporting workflows',
+    desc: 'Agents that monitor campaign performance, detect anomalies, and generate narrated insight summaries — on schedule, without human assembly.',
+  },
+  {
+    n: '02',
+    label: 'Natural language querying',
+    desc: 'Connect your warehouse to an LLM so analysts and executives can ask questions in plain English and get defensible, sourced answers.',
+  },
+  {
+    n: '03',
+    label: 'Context architecture (CaaS)',
+    desc: 'Design the context layer that feeds your agents: what customer state, campaign state, and business rules the model needs to reason correctly.',
+  },
+  {
+    n: '04',
+    label: 'AI observability',
+    desc: 'LLM call logging, prompt versioning, output quality monitoring. Know when your agent is underperforming before your CMO notices.',
+  },
+  {
+    n: '05',
+    label: 'AI stack design',
+    desc: 'Audit your current stack for AI readiness. Select the right orchestration framework. Get a blueprint, not a vendor recommendation.',
+  },
+];
+
+const archSteps = [
+  { label: 'Data Core', sub: 'Snowflake / Databricks' },
+  { label: 'Semantic Layer', sub: 'dbt / Cube' },
+  { label: 'Context Layer — CaaS', sub: 'what the agent knows' },
+  { label: 'Agent Runtime', sub: 'perceive → plan → act → observe' },
+  { label: 'Write-back Actions', sub: 'campaign pauses, budget shifts, alerts' },
+  { label: 'Observability', sub: 'Helicone / LangSmith / Arize' },
+];
+---
+
+<Layout
+  title="AI Consulting for Marketing Teams | Clearpath Analytics"
+  description="Agentic AI systems that work in production — not demos. Context architecture, NLQ, AI observability, and write-back agents built on your existing data stack."
+  keywords={['AI consulting marketing', 'agentic AI systems', 'marketing AI agents', 'AI observability', 'LLM marketing automation']}
+>
+
+  <!-- ── BREADCRUMB ─── -->
+  <div style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:12px 48px;">
+      <span style="font-size:13px;color:var(--ink-dim);">
+        <a href="/" style="color:var(--ink-dim);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--ink-dim)'">Home</a>
+        <span style="margin:0 8px;">→</span>
+        <span style="color:var(--ink-mid);">AI Consulting</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── HERO ─── -->
+  <section style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:88px 48px 80px;">
+      <span class="section-label">AI Consulting</span>
+      <h1 style="font-size:clamp(32px,5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:22px;max-width:700px;">
+        AI that works in production. Not in demos.
+      </h1>
+      <p style="font-size:18px;color:var(--ink-mid);line-height:1.75;margin-bottom:36px;max-width:560px;">
+        Most "AI for marketing" is a wrapper around ChatGPT. Real AI systems perceive state, plan actions, use tools, and recover from failure — automatically, on schedule, without a human in the loop. That's what we build.
+      </p>
+      <a href="/#audit" class="btn-primary" style="font-size:15px;padding:12px 24px;">Book an AI Architecture Review →</a>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── PROBLEM ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">Why AI projects fail</span>
+      <h2 class="section-title">Three reasons AI doesn't survive contact with reality.</h2>
+      <p class="section-sub">These aren't technical edge cases. They're the same three problems, every time.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {problems.map(p => (
+          <div class="card" style={`border-left:4px solid ${p.color};`}>
+            <h3 style="font-size:17px;margin-bottom:10px;">{p.title}</h3>
+            <p style="font-size:14px;line-height:1.75;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── WHAT WE BUILD ─── -->
+  <section>
+    <div class="section-inner">
+      <span class="section-label">What we build</span>
+      <h2 class="section-title">Production AI systems for marketing teams.</h2>
+      <p class="section-sub">Not prototypes. Systems with context architecture, observability, and write-back actions built in from day one.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:720px;">
+        {builds.map(b => (
+          <div style="display:flex;gap:20px;padding:22px 28px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);">
+            <span style="font-family:var(--font-accent);font-size:24px;font-weight:700;color:var(--amber);min-width:32px;margin-top:2px;">{b.n}</span>
+            <div>
+              <div style="font-family:var(--font-serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;">{b.label}</div>
+              <div style="font-size:15px;color:var(--ink-mid);line-height:1.7;">{b.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── ARCHITECTURE DIAGRAM ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">The architecture</span>
+      <h2 class="section-title">The stack we design and build.</h2>
+      <p class="section-sub">Every layer has a job. Every job has observability. Nothing is a black box.</p>
+
+      <div style="max-width:480px;">
+        {archSteps.map((step, i) => (
+          <div>
+            <div style="display:flex;gap:16px;align-items:center;padding:18px 24px;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--radius-sm);box-shadow:2px 2px 0 rgba(28,25,23,0.06);">
+              <div style="width:28px;height:28px;background:var(--ink);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-family:var(--font-accent);font-size:13px;font-weight:700;color:var(--cream);box-shadow:2px 2px 0 var(--amber);flex-shrink:0;">{(i + 1).toString().padStart(2, '0')}</div>
+              <div>
+                <div style="font-size:15px;font-weight:600;color:var(--ink);">{step.label}</div>
+                <div style="font-size:13px;color:var(--ink-dim);margin-top:2px;">{step.sub}</div>
+              </div>
+            </div>
+            {i < archSteps.length - 1 && (
+              <div style="display:flex;justify-content:center;padding:4px 0;">
+                <div style="width:1.5px;height:24px;background:var(--border);position:relative;">
+                  <span style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);font-size:14px;color:var(--amber);line-height:1;">↓</span>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TECH STACK ─── -->
+  <section>
+    <div class="section-inner" style="padding-top:64px;padding-bottom:64px;">
+      <span class="section-label">Tech stack</span>
+      <h2 class="section-title" style="margin-bottom:32px;">The tools we build on.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {stack.map(t => (
+          <span style="font-size:14px;font-weight:500;padding:7px 16px;border:1.5px solid var(--border);border-radius:100px;color:var(--ink-mid);background:var(--paper);box-shadow:2px 2px 0 rgba(28,25,23,0.06);">{t}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── EXPERIENCE CALLOUT ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div class="pull-quote">
+        <p>At TapClicks I built production agentic AI systems — perceive-plan-act-observe loops with real write-back actions — not proof-of-concepts. Ask Your Dashboard (NLQ agent), AI Operator Agents, and ObsGap (AI observability) shipped to real customers.</p>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:12px;font-weight:600;color:var(--cream);flex-shrink:0;box-shadow:2px 2px 0 var(--amber);">AR</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--ink);">Angshuman Rudra</div>
+            <div style="font-size:13px;color:var(--ink-dim);">Founding PM, TapClicks · 10 years</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── FOOTER CTA ─── -->
+  <section style="background:var(--paper);border-top:1.5px solid var(--border);">
+    <div class="section-inner" style="padding-top:72px;padding-bottom:72px;">
+      <div style="background:var(--ink);border-radius:var(--radius);padding:48px;box-shadow:5px 5px 0 var(--amber);max-width:680px;">
+        <span class="section-label" style="color:rgba(250,247,242,0.5);">Get started</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--cream);margin-bottom:14px;letter-spacing:-0.01em;line-height:1.2;">Start with an AI Architecture Review.</h2>
+        <p style="font-size:16px;color:rgba(250,247,242,0.6);line-height:1.75;margin-bottom:28px;max-width:480px;">Two hours. We assess your current stack, identify where AI can replace manual work, and design the agent architecture. <strong style="color:var(--amber);">$2,000 flat.</strong></p>
+        <a href="/#audit" class="btn-cream">Book a review →</a>
+      </div>
+
+      <p style="margin-top:32px;font-size:14px;color:var(--ink-dim);">
+        Looking for measurement and analytics consulting?
+        <a href="/#services" style="color:var(--amber);font-weight:500;margin-left:4px;">See all services →</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>

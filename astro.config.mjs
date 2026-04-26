@@ -7,4 +7,8 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   integrations: [sitemap()],
+  redirects: {
+    '/services/data-engineering': '/data-engineering',
+    '/services/semantic-layer': '/semantic-layer',
+  },
 });

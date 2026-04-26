@@ -55,22 +55,22 @@ nav {
   z-index: 100;
   background: var(--paper);
   border-bottom: 1.5px solid var(--border);
-  height: 62px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 48px;
+  padding: 0 40px;
 }
 
 .nav-logo {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nav-logo-mark {
@@ -91,7 +91,7 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   list-style: none;
 }
 
@@ -400,7 +400,7 @@ footer p { font-size: 13px; color: var(--ink-dim); }
 .nav-mobile-menu {
   display: none;
   position: fixed;
-  top: 62px;
+  top: 52px;
   left: 0;
   right: 0;
   background: var(--paper);

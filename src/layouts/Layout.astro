@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://clearpath-analytics.vercel.app';
-const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath Analytics`;
+const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath`;
 ---
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath An
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-  <meta property="og:site_name" content="Clearpath Analytics" />
+  <meta property="og:site_name" content="Clearpath" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
@@ -55,74 +55,41 @@ const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath An
   <nav>
     <a href="/" class="nav-logo">
       <div class="nav-logo-mark"><span>C</span></div>
-      Clearpath Analytics
+      Clearpath
     </a>
     <ul class="nav-links">
-      <li class="nav-dropdown">
-        <button aria-haspopup="true" aria-expanded="false">
-          Services <span class="nav-dropdown-caret">▾</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><span class="dropdown-group-label">For Marketing Leaders</span></li>
-          <li><a href="/#services">Services overview</a></li>
-          <div class="dropdown-divider"></div>
-          <li><span class="dropdown-group-label">For Engineering &amp; Data Teams</span></li>
-          <li><a href="/data-engineering">Data Engineering</a></li>
-          <li><a href="/semantic-layer">Semantic Layer</a></li>
-          <li><a href="/ai">AI Consulting</a></li>
-        </ul>
-      </li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/audit">AI Audit</a></li>
+      <li><a href="/#services">Work</a></li>
+      <li><a href="/blog">Writing</a></li>
+      <li><a href="/#building">Building</a></li>
+      <li><a href="/services/speaking">Speaking</a></li>
       <li><a href="/#about">About</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="/#audit" class="btn-primary">Book a Strategy Call →</a>
+      <a href="/#contact" class="btn-primary">Get in touch →</a>
       <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
     </div>
   </nav>
 
   <!-- Mobile nav -->
   <div class="nav-mobile-menu" id="nav-mobile">
-    <button class="nav-mobile-accordion-toggle" id="nav-services-toggle">
-      Services
-      <span id="nav-services-caret" style="font-size:12px;transition:transform 0.15s;">▾</span>
-    </button>
-    <div class="nav-mobile-accordion-body" id="nav-services-body">
-      <span class="nav-mobile-group-label">For Marketing Leaders</span>
-      <a href="/#services" class="nav-mobile-sub-link">Services overview</a>
-      <span class="nav-mobile-group-label">For Engineering &amp; Data Teams</span>
-      <a href="/data-engineering" class="nav-mobile-sub-link">Data Engineering</a>
-      <a href="/semantic-layer" class="nav-mobile-sub-link">Semantic Layer</a>
-      <a href="/ai" class="nav-mobile-sub-link">AI Consulting</a>
-    </div>
-    <a href="/blog" class="nav-mobile-link">Blog</a>
-    <a href="/audit" class="nav-mobile-link">AI Audit</a>
+    <a href="/#services" class="nav-mobile-link">Work</a>
+    <a href="/blog" class="nav-mobile-link">Writing</a>
+    <a href="/#building" class="nav-mobile-link">Building</a>
+    <a href="/services/speaking" class="nav-mobile-link">Speaking</a>
     <a href="/#about" class="nav-mobile-link">About</a>
     <div style="margin-top:16px;">
-      <a href="/#audit" class="btn-primary" style="width:100%;justify-content:center;">Book a Strategy Call →</a>
+      <a href="/#contact" class="btn-primary" style="width:100%;justify-content:center;">Get in touch →</a>
     </div>
   </div>
 
   <script>
     const toggle = document.getElementById('nav-toggle');
     const mobileMenu = document.getElementById('nav-mobile');
-    const servicesToggle = document.getElementById('nav-services-toggle');
-    const servicesBody = document.getElementById('nav-services-body');
-    const servicesCaret = document.getElementById('nav-services-caret');
 
     toggle?.addEventListener('click', () => {
       mobileMenu?.classList.toggle('open');
     });
 
-    servicesToggle?.addEventListener('click', () => {
-      servicesBody?.classList.toggle('open');
-      if (servicesCaret) {
-        servicesCaret.style.transform = servicesBody?.classList.contains('open') ? 'rotate(180deg)' : '';
-      }
-    });
-
-    // Close mobile nav when a link is clicked
     mobileMenu?.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
@@ -136,15 +103,16 @@ const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath An
     <footer>
       <a href="/" class="nav-logo" style="font-size:15px;">
         <div class="nav-logo-mark"><span>C</span></div>
-        Clearpath Analytics
+        Clearpath
       </a>
       <ul class="footer-links">
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/blog">Blog</a></li>
+        <li><a href="/#services">Work</a></li>
+        <li><a href="/blog">Writing</a></li>
+        <li><a href="/#building">Building</a></li>
         <li><a href="/#about">About</a></li>
         <li><a href="https://www.linkedin.com/in/angshumanrudra/" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
-      <p>© 2026 Clearpath Analytics</p>
+      <p>© 2026 Clearpath</p>
     </footer>
   </div>
 </body>

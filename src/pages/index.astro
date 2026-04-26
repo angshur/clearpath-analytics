@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<Layout
+  title="Clearpath"
+  description="AI agent architecture, marketing measurement, and data engineering for teams navigating the AI transition. Consulting and advisory by Angshuman Rudra."
+  keywords={['AI consulting', 'AI agent architecture', 'marketing measurement', 'data engineering', 'AI transition', 'marketing AI']}
+>
+
+  <!-- ── HERO ─── -->
+  <section style="background:var(--paper);border-bottom:1.5px solid var(--border);">
+    <div style="max-width:var(--max-w);margin:0 auto;padding:96px 48px 88px;">
+      <span class="section-label">Frontier AI Consulting</span>
+      <h1 style="font-size:clamp(34px,4.5vw,52px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;margin-bottom:24px;max-width:680px;">
+        Marketing operations<br>
+        is being rebuilt by AI.<br>
+        Most teams are watching<br>
+        it happen.
+      </h1>
+      <p style="font-size:18px;color:var(--ink-mid);line-height:1.75;margin-bottom:40px;max-width:540px;">
+        I help marketing and data teams design the agent architecture, measurement layer, and data infrastructure for what comes next — not what worked last decade.
+      </p>
+
+      <!-- Email capture -->
+      <form id="hero-form" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px;">
+        <input
+          id="hero-email"
+          type="email"
+          placeholder="Your work email"
+          required
+          style="padding:12px 18px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:var(--font-body);background:white;color:var(--ink);width:280px;max-width:100%;box-sizing:border-box;transition:border-color 0.15s;"
+          onfocus="this.style.borderColor='var(--ink)'"
+          onblur="this.style.borderColor='var(--border)'"
+        />
+        <button type="submit" id="hero-submit" class="btn-primary" style="font-size:15px;padding:12px 22px;">Get in touch →</button>
+      </form>
+      <p style="font-size:13px;color:var(--ink-dim);margin-bottom:44px;">No pitch. I'll reply within 1 business day.</p>
+
+      <!-- Credential pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:28px;border-top:1.5px solid var(--border);">
+        <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Ex-TapClicks · Founding PM</span>
+        <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Yahoo · Adobe</span>
+        <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Forbes Technology Council</span>
+        <span style="font-size:12px;font-weight:500;color:var(--ink-dim);padding:5px 12px;border:1.5px solid var(--border);border-radius:100px;background:var(--cream);">Cornell MBA + MS CS</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── THESIS ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">The moment</span>
+      <h2 class="section-title">The electricity moment.</h2>
+
+      <div style="max-width:640px;">
+        <p style="font-size:17px;color:var(--ink-mid);line-height:1.9;margin-bottom:20px;">
+          Every decade has one technology that restructures how work gets done. The teams that move early don't just save costs — they build structural advantages their competitors spend years trying to close.
+        </p>
+        <p style="font-size:17px;color:var(--ink-mid);line-height:1.9;margin-bottom:20px;">
+          AI agents are that technology for marketing and data operations. Not AI that assists analysts. AI that replaces entire workflow loops — briefing, monitoring, reporting, anomaly detection, measurement — running continuously, at scale, on your actual data.
+        </p>
+        <p style="font-size:17px;color:var(--ink-mid);line-height:1.9;">
+          Most marketing organizations are still debating whether to start. The ones I work with are already building.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SERVICES ─── -->
+  <section id="services">
+    <div class="section-inner">
+      <span class="section-label">What I do</span>
+      <h2 class="section-title">Five ways we work together.</h2>
+      <p class="section-sub">Each engagement is fixed scope with a clear deliverable. No open-ended retainers until you've seen what we can do.</p>
+
+      <div style="margin-top:40px;border-top:1.5px solid var(--border);">
+        {[
+          {
+            num: '01',
+            name: 'AI Transition Roadmap',
+            desc: 'Where your marketing org is on the AI maturity curve — and the 90-day path to agent-native operations.',
+            href: '/services/ai-transition',
+          },
+          {
+            num: '02',
+            name: 'Agent Architecture for Marketing Teams',
+            desc: 'Design the agent stack: which workflows automate, how orchestration works, how governance is enforced.',
+            href: '/services/agent-architecture',
+          },
+          {
+            num: '03',
+            name: 'Marketing Measurement Modernization',
+            desc: 'Attribution, MMM, and incrementality — rebuilt as the measurement layer your AI agents can actually use.',
+            href: '/services/measurement',
+          },
+          {
+            num: '04',
+            name: 'Data Engineering & Semantic Layer',
+            desc: 'Pipelines, normalization, and the context layer that makes AI agents useful rather than hallucinating.',
+            href: '/services/data-engineering',
+          },
+          {
+            num: '05',
+            name: 'Speaking & Workshops',
+            desc: '"The AI-Native Marketing Stack" — keynote or half-day workshop for marketing leadership teams.',
+            href: '/services/speaking',
+          },
+        ].map(s => (
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;padding:28px 0;border-bottom:1.5px solid var(--border);flex-wrap:wrap;">
+            <div style="display:flex;gap:24px;align-items:baseline;flex:1;min-width:260px;">
+              <span style="font-family:var(--font-accent);font-size:17px;font-weight:700;color:var(--amber);min-width:28px;">{s.num}</span>
+              <div>
+                <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:5px;">{s.name}</div>
+                <div style="font-size:15px;color:var(--ink-mid);line-height:1.65;">{s.desc}</div>
+              </div>
+            </div>
+            <a href={s.href} style="font-size:14px;font-weight:600;color:var(--amber);white-space:nowrap;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ Learn more</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── WHAT I'M BUILDING ─── -->
+  <section id="building" style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <span class="section-label">What I'm building</span>
+      <h2 class="section-title">Practitioner, not just advisor.</h2>
+      <p class="section-sub" style="margin-bottom:40px;">The best consulting comes from people still in the arena. Here's what I'm shipping:</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        <!-- Card 1: SaaSMatchup -->
+        <div class="card">
+          <div style="margin-bottom:14px;">
+            <span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--amber);color:white;">Live</span>
+          </div>
+          <h3 style="font-size:18px;margin-bottom:10px;">SaaSMatchup</h3>
+          <p style="font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:20px;">Tech stack recommendation for agencies and brands. Architecture-level intelligence — not another tool directory.</p>
+          <a href="https://saasmatchup.com" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:var(--amber);text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">saasmatchup.com →</a>
+        </div>
+
+        <!-- Card 2: Agent Playbook -->
+        <div class="card">
+          <div style="margin-bottom:14px;">
+            <span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--cream-dark);color:var(--ink-mid);border:1.5px solid var(--border);">Building</span>
+          </div>
+          <h3 style="font-size:18px;margin-bottom:10px;">Agent Playbook</h3>
+          <p style="font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:20px;">How to run three ventures on weekends with AI agents. The methodology, the stack, the patterns.</p>
+          <span style="font-size:14px;font-weight:600;color:var(--ink-dim);">Coming soon</span>
+        </div>
+
+        <!-- Card 3: Clearpath Ventures -->
+        <div class="card">
+          <div style="margin-bottom:14px;">
+            <span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--amber);color:white;">Active</span>
+          </div>
+          <h3 style="font-size:18px;margin-bottom:10px;">Clearpath Ventures</h3>
+          <p style="font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:20px;">Exploring the next category. Agent orchestration for marketing operators.</p>
+          <span style="font-size:14px;font-weight:600;color:var(--ink-dim);">In research</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── ABOUT ─── -->
+  <section id="about">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start;max-width:760px;">
+        <div style="width:76px;height:76px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:22px;font-weight:600;color:var(--cream);border:3px solid var(--cream);box-shadow:3px 3px 0 var(--amber);flex-shrink:0;">AR</div>
+        <div>
+          <span class="section-label">About</span>
+          <h2 style="font-size:28px;margin-bottom:16px;">Angshuman Rudra</h2>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:16px;">For ten years I was the founding product leader at TapClicks — building the data and AI infrastructure that thousands of marketing agencies run on. 200+ data connectors. Production AI agent systems. ETL pipelines at $10B+ in ad spend processed annually.</p>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:16px;">Before that: Yahoo, Adobe, Xilinx.</p>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:28px;">I've built the full stack — from raw ingestion through agentic workflows — across two decades. I'm not describing a future I'm predicting. I'm describing a present I'm building.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="tag tag-amber">Forbes Technology Council</span>
+            <span class="tag tag-sage">Cornell MBA</span>
+            <span class="tag tag-blue">MS Computer Science</span>
+            <a href="https://www.linkedin.com/in/angshumanrudra/" target="_blank" rel="noopener" style="font-family:var(--font-accent);font-size:14px;font-weight:600;padding:4px 12px;border-radius:100px;border:1.5px solid var(--amber);color:var(--amber);text-decoration:none;">LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── BLOG ─── -->
+  <section style="background:var(--cream-dark);">
+    <div class="section-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:20px;">
+        <div>
+          <span class="section-label">From the blog</span>
+          <h2 style="font-size:32px;margin:0;">Thinking out loud about AI, data, and what comes next.</h2>
+        </div>
+        <a href="/blog" class="btn-secondary">View all posts →</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {posts.map(post => (
+          <a href={`/blog/${post.slug}`} class="card" style="display:block;text-decoration:none;">
+            <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+              {(post.data.keywords ?? []).slice(0, 2).map((k: string) => (
+                <span class="tag tag-amber">{k}</span>
+              ))}
+            </div>
+            <h3 style="font-size:17px;margin-bottom:10px;line-height:1.35;">{post.data.title}</h3>
+            <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:20px;">{post.data.description}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:13px;color:var(--ink-dim);">{post.data.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</span>
+              <span style="font-family:var(--font-accent);font-size:15px;font-weight:600;color:var(--amber);">Read →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── CONTACT ─── -->
+  <section id="contact" style="background:var(--paper);border-top:1.5px solid var(--border);">
+    <div class="section-inner" style="padding-bottom:96px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+        <!-- Left: copy -->
+        <div>
+          <span class="section-label">Get in touch</span>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:16px;line-height:1.15;">Let's talk about what you're building.</h2>
+          <p style="font-size:17px;color:var(--ink-mid);line-height:1.8;margin-bottom:24px;">Whether you need a roadmap, an architecture review, a speaker, or just a sharp conversation about where marketing AI is actually going — start here.</p>
+        </div>
+
+        <!-- Right: form -->
+        <div>
+          <form id="contact-form" style="background:var(--cream);border:1.5px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Name *</label>
+                <input id="cf-name" type="text" placeholder="Jane Smith" required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+              </div>
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Email *</label>
+                <input id="cf-email" type="email" placeholder="jane@company.com" required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+              </div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Company</label>
+              <input id="cf-company" type="text" placeholder="Acme Digital" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
+            </div>
+            <div style="margin-bottom:24px;">
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">What are you working on? *</label>
+              <textarea id="cf-message" rows="4" placeholder="e.g. We're evaluating how to build agent-based reporting for our marketing team..." required style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:white;color:var(--ink);box-sizing:border-box;resize:vertical;transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            </div>
+            <button type="submit" id="cf-submit" class="btn-primary" style="width:100%;font-size:15px;padding:13px;justify-content:center;">Send →</button>
+            <p style="font-size:13px;color:var(--ink-dim);text-align:center;margin-top:14px;margin-bottom:0;">Or email directly: <a href="mailto:angshuman.rudra@gmail.com" style="color:var(--ink-mid);text-decoration:underline;">angshuman.rudra@gmail.com</a></p>
+            <div id="cf-success" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(77,124,95,0.08);border:1.5px solid rgba(77,124,95,0.25);border-radius:8px;font-size:14px;color:var(--sage);line-height:1.6;">
+              ✓ Message sent! I'll be in touch within 1 business day.
+            </div>
+            <div id="cf-error" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(194,65,12,0.07);border:1.5px solid rgba(194,65,12,0.2);border-radius:8px;font-size:14px;color:var(--rust);line-height:1.6;">
+              Something went wrong. Please email me directly at angshuman.rudra@gmail.com
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Hero email capture — scroll to contact and pre-fill email
+    const heroForm = document.getElementById('hero-form') as HTMLFormElement;
+    heroForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (document.getElementById('hero-email') as HTMLInputElement).value;
+      const cfEmail = document.getElementById('cf-email') as HTMLInputElement;
+      if (cfEmail) cfEmail.value = email;
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      (document.getElementById('cf-name') as HTMLInputElement)?.focus();
+    });
+
+    // Contact form submission
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const btn = document.getElementById('cf-submit') as HTMLButtonElement;
+    const success = document.getElementById('cf-success') as HTMLElement;
+    const errorEl = document.getElementById('cf-error') as HTMLElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.textContent = 'Sending…';
+      btn.setAttribute('disabled', 'true');
+      success.style.display = 'none';
+      errorEl.style.display = 'none';
+
+      const name = (document.getElementById('cf-name') as HTMLInputElement).value;
+      const email = (document.getElementById('cf-email') as HTMLInputElement).value;
+      const company = (document.getElementById('cf-company') as HTMLInputElement).value;
+      const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, company, message }),
+        });
+        if (res.ok) {
+          success.style.display = 'block';
+          form.reset();
+        } else {
+          errorEl.style.display = 'block';
+        }
+      } catch {
+        errorEl.style.display = 'block';
+      } finally {
+        btn.textContent = 'Send →';
+        btn.removeAttribute('disabled');
+      }
+    });
+  </script>
+
+</Layout>

@@ -1,0 +1,119 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string[];
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  keywords = [],
+  ogImage = '/og-default.png',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = 'https://clearpath-analytics.vercel.app';
+const fullTitle = title.includes('Clearpath') ? title : `${title} | Clearpath`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FAF7F2" />
+
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+  <meta name="author" content="Angshuman Rudra" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:site_name" content="Clearpath" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark"><span>C</span></div>
+      Clearpath
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#services">Work</a></li>
+      <li><a href="/blog">Writing</a></li>
+      <li><a href="/#building">Building</a></li>
+      <li><a href="/services/speaking">Speaking</a></li>
+      <li><a href="/#about">About</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="/#contact" class="btn-primary">Get in touch →</a>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile-menu" id="nav-mobile">
+    <a href="/#services" class="nav-mobile-link">Work</a>
+    <a href="/blog" class="nav-mobile-link">Writing</a>
+    <a href="/#building" class="nav-mobile-link">Building</a>
+    <a href="/services/speaking" class="nav-mobile-link">Speaking</a>
+    <a href="/#about" class="nav-mobile-link">About</a>
+    <div style="margin-top:16px;">
+      <a href="/#contact" class="btn-primary" style="width:100%;justify-content:center;">Get in touch →</a>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('nav-mobile');
+
+    toggle?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('open');
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+  </script>
+
+  <main>
+    <slot />
+  </main>
+
+  <div style="max-width: var(--max-w); margin: 0 auto;">
+    <footer>
+      <a href="/" class="nav-logo" style="font-size:15px;">
+        <div class="nav-logo-mark"><span>C</span></div>
+        Clearpath
+      </a>
+      <ul class="footer-links">
+        <li><a href="/#services">Work</a></li>
+        <li><a href="/blog">Writing</a></li>
+        <li><a href="/#building">Building</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="https://www.linkedin.com/in/angshumanrudra/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <p>© 2026 Clearpath</p>
+    </footer>
+  </div>
+</body>
+</html>

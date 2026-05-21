@@ -34,54 +34,71 @@ The most important concept in CPG MMM — and the one most often undersimplified
 When you run a TV campaign, its effect on sales doesn't disappear the moment the ads stop airing. Brand awareness created this week persists into next week, and the week after, at diminishing strength. Shoppers who were exposed to your campaign but didn't buy immediately are more likely to buy the next time they're in the cereal aisle. This carryover effect is what adstock modeling captures.
 
 <div style="overflow-x: auto; margin: 2rem 0;">
-<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;font-family:system-ui,sans-serif;">
-  <rect width="680" height="300" fill="#0f1117" rx="8"/>
-  <text x="340" y="28" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Adstock Decay: How a Single Week of TV Spend Carries Forward</text>
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;font-family:system-ui,sans-serif;display:block;">
+  <rect width="680" height="300" fill="#F0EBE1" rx="8"/>
+  <text x="340" y="26" text-anchor="middle" fill="#1C1917" font-size="13" font-weight="600">Adstock Decay: How a Single Week of TV Spend Carries Forward</text>
 
-  <!-- Axes -->
-  <line x1="60" y1="240" x2="620" y2="240" stroke="#334155" stroke-width="1"/>
-  <line x1="60" y1="60" x2="60" y2="240" stroke="#334155" stroke-width="1"/>
+  <!-- Axes: y=46(100%) to y=248(0%), range=202px; x=68 to x=620 -->
+  <line x1="68" y1="248" x2="624" y2="248" stroke="rgba(28,25,23,0.2)" stroke-width="1.5"/>
+  <line x1="68" y1="46" x2="68" y2="248" stroke="rgba(28,25,23,0.2)" stroke-width="1.5"/>
 
-  <!-- X labels -->
-  <text x="340" y="268" text-anchor="middle" fill="#64748b" font-size="11">Weeks after spend</text>
-  <text x="80" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">0</text>
-  <text x="160" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">2</text>
-  <text x="240" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">4</text>
-  <text x="320" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">6</text>
-  <text x="400" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">8</text>
-  <text x="480" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">10</text>
-  <text x="560" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">12</text>
+  <!-- Gridlines: 25%=y=198, 50%=y=147, 75%=y=97 -->
+  <line x1="68" y1="198" x2="624" y2="198" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="68" y1="147" x2="624" y2="147" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="68" y1="97" x2="624" y2="97" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
 
-  <!-- Y label -->
-  <text x="18" y="155" text-anchor="middle" fill="#64748b" font-size="11" transform="rotate(-90,18,155)">Effective adstock</text>
-  <text x="52" y="244" text-anchor="end" fill="#94a3b8" font-size="10">0%</text>
-  <text x="52" y="180" text-anchor="end" fill="#94a3b8" font-size="10">25%</text>
-  <text x="52" y="120" text-anchor="end" fill="#94a3b8" font-size="10">50%</text>
-  <text x="52" y="65" text-anchor="end" fill="#94a3b8" font-size="10">100%</text>
+  <!-- Y axis labels -->
+  <text x="62" y="252" text-anchor="end" fill="rgba(28,25,23,0.45)" font-size="10">0%</text>
+  <text x="62" y="202" text-anchor="end" fill="rgba(28,25,23,0.45)" font-size="10">25%</text>
+  <text x="62" y="151" text-anchor="end" fill="rgba(28,25,23,0.45)" font-size="10">50%</text>
+  <text x="62" y="50" text-anchor="end" fill="rgba(28,25,23,0.45)" font-size="10">100%</text>
+  <text x="15" y="152" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10" transform="rotate(-90,15,152)">Effective adstock</text>
 
-  <!-- Gridlines -->
-  <line x1="60" y1="180" x2="620" y2="180" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="60" y1="120" x2="620" y2="120" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-
-  <!-- TV (θ=0.61, slow decay) -->
-  <!-- Points: week 0=100%, 1=61%, 2=37%, 3=23%, 4=14%, 5=8.5%, 6=5.2%, 7=3.2%, 8=1.9% -->
-  <polyline points="80,65 120,109 160,146 200,170 240,186 280,196 320,202 360,206 400,209 440,211 480,212 520,213 560,213 600,213" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
-  <text x="380" y="82" fill="#60a5fa" font-size="11">TV / Linear (θ = 0.61)</text>
-  <text x="380" y="96" fill="#64748b" font-size="10">61% of awareness carries to next week</text>
-
-  <!-- Digital display (θ=0.35, fast decay) -->
-  <!-- Points: week 0=100%, 1=35%, 2=12%, 3=4%, 4=1.5% -->
-  <polyline points="80,65 120,163 160,206 200,219 240,224 280,226 320,227 360,228 400,228 440,228" fill="none" stroke="#34d399" stroke-width="2.5"/>
-  <text x="380" y="136" fill="#34d399" font-size="11">Digital display (θ = 0.35)</text>
-  <text x="380" y="150" fill="#64748b" font-size="10">Fast decay — effect mostly in-week</text>
-
-  <!-- Paid social (θ=0.20) -->
-  <polyline points="80,65 120,193 160,220 200,228 240,231 280,232" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
-  <text x="200" y="185" fill="#f59e0b" font-size="11">Paid social (θ = 0.20)</text>
+  <!-- X axis: week 0 at x=88, each 40px = 1 week -->
+  <text x="340" y="274" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="11">Weeks after campaign spend</text>
+  <text x="88" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">0</text>
+  <text x="168" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">2</text>
+  <text x="248" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">4</text>
+  <text x="328" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">6</text>
+  <text x="408" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">8</text>
+  <text x="488" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">10</text>
+  <text x="568" y="262" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">12</text>
 
   <!-- Spend week marker -->
-  <line x1="80" y1="60" x2="80" y2="245" stroke="#475569" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="82" y="250" fill="#64748b" font-size="9">spend week</text>
+  <line x1="88" y1="46" x2="88" y2="251" stroke="rgba(28,25,23,0.15)" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="91" y="258" fill="rgba(28,25,23,0.4)" font-size="9">spend</text>
+
+  <!-- Curves: y(v) = 248 - v*202; x(w) = 88 + w*40 -->
+
+  <!-- TV (θ=0.61) — Blue #1D4ED8 -->
+  <!-- v per week: 1.000, 0.610, 0.372, 0.227, 0.138, 0.084, 0.051, 0.031, 0.019, 0.012, 0.007, 0.004, 0.002 -->
+  <!-- y: 46, 125, 173, 202, 220, 231, 237, 242, 244, 245, 247, 247, 248 -->
+  <polyline points="88,46 128,125 168,173 208,202 248,220 288,231 328,237 368,242 408,244 448,245 488,247 528,247 568,248 608,248"
+            fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Digital display (θ=0.35) — Sage #4D7C5F -->
+  <!-- v per week: 1.000, 0.350, 0.123, 0.043, 0.015, 0.005, 0.002 -->
+  <!-- y: 46, 177, 223, 239, 245, 247, 248 -->
+  <polyline points="88,46 128,177 168,223 208,239 248,245 288,247 328,248"
+            fill="none" stroke="#4D7C5F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Paid social (θ=0.20) — Amber #D97706 -->
+  <!-- v per week: 1.000, 0.200, 0.040, 0.008, 0.002 -->
+  <!-- y: 46, 208, 240, 246, 248 -->
+  <polyline points="88,46 128,208 168,240 208,246 248,248"
+            fill="none" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Legend: upper right — all curves near zero beyond week 6 (x≥328) -->
+  <rect x="322" y="52" width="290" height="102" fill="rgba(250,247,242,0.92)" rx="6" stroke="rgba(28,25,23,0.1)" stroke-width="1"/>
+  <rect x="332" y="68" width="18" height="3" fill="#1D4ED8" rx="1"/>
+  <text x="356" y="74" fill="#1C1917" font-size="11" font-weight="500">TV / Linear  (θ = 0.61)</text>
+  <text x="356" y="87" fill="rgba(28,25,23,0.55)" font-size="10">61% of awareness carries each week</text>
+  <rect x="332" y="98" width="18" height="3" fill="#4D7C5F" rx="1"/>
+  <text x="356" y="104" fill="#1C1917" font-size="11" font-weight="500">Digital display  (θ = 0.35)</text>
+  <text x="356" y="117" fill="rgba(28,25,23,0.55)" font-size="10">35% carries — mostly in-week effect</text>
+  <rect x="332" y="128" width="18" height="3" fill="#D97706" rx="1"/>
+  <text x="356" y="134" fill="#1C1917" font-size="11" font-weight="500">Paid social  (θ = 0.20)</text>
+  <text x="356" y="147" fill="rgba(28,25,23,0.55)" font-size="10">20% carries — effect gone in 2 weeks</text>
 </svg>
 </div>
 

@@ -33,48 +33,48 @@ This is the issue that kills more automotive measurement programs than any techn
 
 <div style="overflow-x: auto; margin: 2rem 0;">
 <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:system-ui,sans-serif;">
-  <rect width="700" height="320" fill="#0f1117" rx="8"/>
+  <rect width="700" height="320" fill="#F0EBE1" rx="8"/>
 
   <!-- Customer journey arrow -->
-  <text x="350" y="26" text-anchor="middle" fill="#94a3b8" font-size="12">Who gets credit for this purchase?</text>
+  <text x="350" y="26" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="12">Who gets credit for this purchase?</text>
 
   <!-- Three spend pools -->
-  <rect x="30" y="50" width="180" height="80" fill="#1e2a3a" rx="6" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="120" y="76" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="600">OEM National</text>
-  <text x="120" y="94" text-anchor="middle" fill="#64748b" font-size="10">TV, streaming, search</text>
-  <text x="120" y="110" text-anchor="middle" fill="#64748b" font-size="10">brand campaigns</text>
-  <text x="120" y="126" text-anchor="middle" fill="#94a3b8" font-size="10">Tracked by: OEM agency</text>
+  <rect x="30" y="50" width="180" height="80" fill="rgba(29,78,216,0.07)" rx="6" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="120" y="76" text-anchor="middle" fill="#1D4ED8" font-size="12" font-weight="600">OEM National</text>
+  <text x="120" y="94" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">TV, streaming, search</text>
+  <text x="120" y="110" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">brand campaigns</text>
+  <text x="120" y="126" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Tracked by: OEM agency</text>
 
-  <rect x="260" y="50" width="180" height="80" fill="#1e2a3a" rx="6" stroke="#8b5cf6" stroke-width="1.5"/>
-  <text x="350" y="76" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">Regional Dealer Assoc.</text>
-  <text x="350" y="94" text-anchor="middle" fill="#64748b" font-size="10">Regional TV, radio,</text>
-  <text x="350" y="110" text-anchor="middle" fill="#64748b" font-size="10">OEM co-op funded 50–70%</text>
-  <text x="350" y="126" text-anchor="middle" fill="#94a3b8" font-size="10">Tracked by: regional agency</text>
+  <rect x="260" y="50" width="180" height="80" fill="rgba(29,78,216,0.07)" rx="6" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="350" y="76" text-anchor="middle" fill="#7C3AED" font-size="12" font-weight="600">Regional Dealer Assoc.</text>
+  <text x="350" y="94" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">Regional TV, radio,</text>
+  <text x="350" y="110" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">OEM co-op funded 50–70%</text>
+  <text x="350" y="126" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Tracked by: regional agency</text>
 
-  <rect x="490" y="50" width="180" height="80" fill="#1e2a3a" rx="6" stroke="#10b981" stroke-width="1.5"/>
-  <text x="580" y="76" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="600">Individual Dealer</text>
-  <text x="580" y="94" text-anchor="middle" fill="#64748b" font-size="10">Local search, display,</text>
-  <text x="580" y="110" text-anchor="middle" fill="#64748b" font-size="10">retargeting, direct mail</text>
-  <text x="580" y="126" text-anchor="middle" fill="#94a3b8" font-size="10">Tracked by: dealer CRM</text>
+  <rect x="490" y="50" width="180" height="80" fill="rgba(29,78,216,0.07)" rx="6" stroke="#4D7C5F" stroke-width="1.5"/>
+  <text x="580" y="76" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">Individual Dealer</text>
+  <text x="580" y="94" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">Local search, display,</text>
+  <text x="580" y="110" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">retargeting, direct mail</text>
+  <text x="580" y="126" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Tracked by: dealer CRM</text>
 
   <!-- Arrows down to conversion -->
-  <line x1="120" y1="130" x2="350" y2="220" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
-  <line x1="350" y1="130" x2="350" y2="220" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
-  <line x1="580" y1="130" x2="350" y2="220" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+  <line x1="120" y1="130" x2="350" y2="220" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+  <line x1="350" y1="130" x2="350" y2="220" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+  <line x1="580" y1="130" x2="350" y2="220" stroke="#4D7C5F" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
 
   <!-- Conversion box -->
-  <rect x="250" y="220" width="200" height="50" fill="#1a1f2e" rx="6" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="350" y="242" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Dealership Sale</text>
-  <text x="350" y="260" text-anchor="middle" fill="#94a3b8" font-size="10">DMS records conversion</text>
+  <rect x="250" y="220" width="200" height="50" fill="rgba(217,119,6,0.08)" rx="6" stroke="#D97706" stroke-width="1.5"/>
+  <text x="350" y="242" text-anchor="middle" fill="#D97706" font-size="12" font-weight="600">Dealership Sale</text>
+  <text x="350" y="260" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">DMS records conversion</text>
 
   <!-- Three claim arrows back up -->
-  <text x="160" y="195" fill="#3b82f6" font-size="10" text-anchor="middle">claims credit</text>
-  <text x="350" y="210" fill="#8b5cf6" font-size="10" text-anchor="middle">claims credit</text>
-  <text x="540" y="195" fill="#10b981" font-size="10" text-anchor="middle">claims credit</text>
+  <text x="160" y="195" fill="#1D4ED8" font-size="10" text-anchor="middle">claims credit</text>
+  <text x="350" y="210" fill="#7C3AED" font-size="10" text-anchor="middle">claims credit</text>
+  <text x="540" y="195" fill="#4D7C5F" font-size="10" text-anchor="middle">claims credit</text>
 
   <!-- Bottom note -->
-  <text x="350" y="298" text-anchor="middle" fill="#64748b" font-size="10">Each party's measurement shows positive ROI. None has visibility into the others' spend.</text>
-  <text x="350" y="312" text-anchor="middle" fill="#64748b" font-size="10">All three claiming the same conversion is arithmetically impossible.</text>
+  <text x="350" y="298" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">Each party's measurement shows positive ROI. None has visibility into the others' spend.</text>
+  <text x="350" y="312" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">All three claiming the same conversion is arithmetically impossible.</text>
 </svg>
 </div>
 

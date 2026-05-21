@@ -23,74 +23,74 @@ Last-click attribution, at its most generous, captures the final 2–3 trackable
 
 <div style="overflow-x: auto; margin: 2rem 0;">
 <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:system-ui,sans-serif;">
-  <rect width="700" height="310" fill="#0f1117" rx="8"/>
-  <text x="350" y="28" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">The B2B Buying Journey vs. What Attribution Actually Sees</text>
+  <rect width="700" height="310" fill="#F0EBE1" rx="8"/>
+  <text x="350" y="28" text-anchor="middle" fill="#1C1917" font-size="13" font-weight="600">The B2B Buying Journey vs. What Attribution Actually Sees</text>
 
   <!-- Timeline bar -->
-  <line x1="40" y1="100" x2="660" y2="100" stroke="#334155" stroke-width="2"/>
+  <line x1="40" y1="100" x2="660" y2="100" stroke="rgba(28,25,23,0.2)" stroke-width="2"/>
 
   <!-- Stage markers on timeline -->
-  <circle cx="80" cy="100" r="5" fill="#3b82f6"/>
-  <circle cx="200" cy="100" r="5" fill="#3b82f6"/>
-  <circle cx="340" cy="100" r="5" fill="#3b82f6"/>
-  <circle cx="480" cy="100" r="5" fill="#3b82f6"/>
-  <circle cx="600" cy="100" r="5" fill="#3b82f6"/>
-  <circle cx="660" cy="100" r="8" fill="#34d399"/>
+  <circle cx="80" cy="100" r="5" fill="#1D4ED8"/>
+  <circle cx="200" cy="100" r="5" fill="#1D4ED8"/>
+  <circle cx="340" cy="100" r="5" fill="#1D4ED8"/>
+  <circle cx="480" cy="100" r="5" fill="#1D4ED8"/>
+  <circle cx="600" cy="100" r="5" fill="#1D4ED8"/>
+  <circle cx="660" cy="100" r="8" fill="#4D7C5F"/>
 
   <!-- Stage labels above -->
-  <text x="80" y="72" text-anchor="middle" fill="#94a3b8" font-size="10">Problem</text>
-  <text x="80" y="84" text-anchor="middle" fill="#94a3b8" font-size="10">awareness</text>
-  <text x="200" y="72" text-anchor="middle" fill="#94a3b8" font-size="10">Category</text>
-  <text x="200" y="84" text-anchor="middle" fill="#94a3b8" font-size="10">research</text>
-  <text x="340" y="72" text-anchor="middle" fill="#94a3b8" font-size="10">Vendor</text>
-  <text x="340" y="84" text-anchor="middle" fill="#94a3b8" font-size="10">shortlist</text>
-  <text x="480" y="72" text-anchor="middle" fill="#94a3b8" font-size="10">Evaluation /</text>
-  <text x="480" y="84" text-anchor="middle" fill="#94a3b8" font-size="10">RFP</text>
-  <text x="600" y="72" text-anchor="middle" fill="#94a3b8" font-size="10">Demo /</text>
-  <text x="600" y="84" text-anchor="middle" fill="#94a3b8" font-size="10">negotiation</text>
-  <text x="660" y="80" text-anchor="middle" fill="#34d399" font-size="10">Closed</text>
+  <text x="80" y="72" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Problem</text>
+  <text x="80" y="84" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">awareness</text>
+  <text x="200" y="72" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Category</text>
+  <text x="200" y="84" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">research</text>
+  <text x="340" y="72" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Vendor</text>
+  <text x="340" y="84" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">shortlist</text>
+  <text x="480" y="72" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Evaluation /</text>
+  <text x="480" y="84" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">RFP</text>
+  <text x="600" y="72" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Demo /</text>
+  <text x="600" y="84" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">negotiation</text>
+  <text x="660" y="80" text-anchor="middle" fill="#4D7C5F" font-size="10">Closed</text>
 
   <!-- Touchpoints (untracked - above) -->
-  <text x="350" y="118" text-anchor="middle" fill="#475569" font-size="9">← months to years ────────────────────────────────────────────────────────── →</text>
+  <text x="350" y="118" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="9">← months to years ────────────────────────────────────────────────────────── →</text>
 
   <!-- Dark funnel touchpoints -->
-  <rect x="50" y="130" width="90" height="36" fill="#1a2332" rx="3" stroke="#334155" stroke-width="1"/>
-  <text x="95" y="146" text-anchor="middle" fill="#64748b" font-size="9">LinkedIn post</text>
-  <text x="95" y="159" text-anchor="middle" fill="#64748b" font-size="9">(no click)</text>
+  <rect x="50" y="130" width="90" height="36" fill="rgba(28,25,23,0.05)" rx="3" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+  <text x="95" y="146" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">LinkedIn post</text>
+  <text x="95" y="159" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">(no click)</text>
 
-  <rect x="160" y="130" width="90" height="36" fill="#1a2332" rx="3" stroke="#334155" stroke-width="1"/>
-  <text x="205" y="146" text-anchor="middle" fill="#64748b" font-size="9">G2 review</text>
-  <text x="205" y="159" text-anchor="middle" fill="#64748b" font-size="9">(anonymous)</text>
+  <rect x="160" y="130" width="90" height="36" fill="rgba(28,25,23,0.05)" rx="3" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+  <text x="205" y="146" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">G2 review</text>
+  <text x="205" y="159" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">(anonymous)</text>
 
-  <rect x="270" y="130" width="90" height="36" fill="#1a2332" rx="3" stroke="#334155" stroke-width="1"/>
-  <text x="315" y="146" text-anchor="middle" fill="#64748b" font-size="9">Gartner MQ</text>
-  <text x="315" y="159" text-anchor="middle" fill="#64748b" font-size="9">(offline)</text>
+  <rect x="270" y="130" width="90" height="36" fill="rgba(28,25,23,0.05)" rx="3" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+  <text x="315" y="146" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">Gartner MQ</text>
+  <text x="315" y="159" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">(offline)</text>
 
-  <rect x="380" y="130" width="90" height="36" fill="#1a2332" rx="3" stroke="#334155" stroke-width="1"/>
-  <text x="425" y="146" text-anchor="middle" fill="#64748b" font-size="9">Conference</text>
-  <text x="425" y="159" text-anchor="middle" fill="#64748b" font-size="9">conversation</text>
+  <rect x="380" y="130" width="90" height="36" fill="rgba(28,25,23,0.05)" rx="3" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+  <text x="425" y="146" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">Conference</text>
+  <text x="425" y="159" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="9">conversation</text>
 
   <!-- Tracked touchpoints (green) -->
-  <rect x="490" y="130" width="80" height="36" fill="#0d2416" rx="3" stroke="#34d399" stroke-width="1.5"/>
-  <text x="530" y="146" text-anchor="middle" fill="#34d399" font-size="9">Paid search</text>
-  <text x="530" y="159" text-anchor="middle" fill="#34d399" font-size="9">(tracked)</text>
+  <rect x="490" y="130" width="80" height="36" fill="rgba(77,124,95,0.10)" rx="3" stroke="#4D7C5F" stroke-width="1.5"/>
+  <text x="530" y="146" text-anchor="middle" fill="#4D7C5F" font-size="9">Paid search</text>
+  <text x="530" y="159" text-anchor="middle" fill="#4D7C5F" font-size="9">(tracked)</text>
 
-  <rect x="580" y="130" width="80" height="36" fill="#0d2416" rx="3" stroke="#34d399" stroke-width="1.5"/>
-  <text x="620" y="146" text-anchor="middle" fill="#34d399" font-size="9">Demo form</text>
-  <text x="620" y="159" text-anchor="middle" fill="#34d399" font-size="9">(tracked)</text>
+  <rect x="580" y="130" width="80" height="36" fill="rgba(77,124,95,0.10)" rx="3" stroke="#4D7C5F" stroke-width="1.5"/>
+  <text x="620" y="146" text-anchor="middle" fill="#4D7C5F" font-size="9">Demo form</text>
+  <text x="620" y="159" text-anchor="middle" fill="#4D7C5F" font-size="9">(tracked)</text>
 
   <!-- Attribution vision line -->
-  <rect x="478" y="185" width="204" height="22" fill="#0d2416" rx="3" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="580" y="200" text-anchor="middle" fill="#34d399" font-size="10">← Attribution sees this →</text>
+  <rect x="478" y="185" width="204" height="22" fill="rgba(77,124,95,0.10)" rx="3" stroke="#4D7C5F" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="580" y="200" text-anchor="middle" fill="#4D7C5F" font-size="10">← Attribution sees this →</text>
 
   <!-- Dark funnel label -->
-  <rect x="38" y="185" width="430" height="22" fill="#1a1f2e" rx="3" stroke="#475569" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="253" y="200" text-anchor="middle" fill="#475569" font-size="10">← Dark funnel: influenced the decision, invisible to attribution →</text>
+  <rect x="38" y="185" width="430" height="22" fill="rgba(28,25,23,0.05)" rx="3" stroke="#475569" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="253" y="200" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">← Dark funnel: influenced the decision, invisible to attribution →</text>
 
   <!-- Bottom note -->
-  <text x="350" y="240" text-anchor="middle" fill="#64748b" font-size="10">Last-click gives 100% credit to "Demo form." The decision was made at "Vendor shortlist."</text>
-  <text x="350" y="256" text-anchor="middle" fill="#64748b" font-size="10">Optimizing to last-click systematically defunds the channels that built the consideration set.</text>
-  <text x="350" y="285" text-anchor="middle" fill="#475569" font-size="10">Deal cycles: SMB 30–90 days · Mid-market 3–9 months · Enterprise 9–24 months</text>
+  <text x="350" y="240" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">Last-click gives 100% credit to "Demo form." The decision was made at "Vendor shortlist."</text>
+  <text x="350" y="256" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">Optimizing to last-click systematically defunds the channels that built the consideration set.</text>
+  <text x="350" y="285" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">Deal cycles: SMB 30–90 days · Mid-market 3–9 months · Enterprise 9–24 months</text>
 </svg>
 </div>
 

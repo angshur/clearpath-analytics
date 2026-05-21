@@ -53,106 +53,106 @@ If you don't have that foundation, methodology choice is premature — you're de
 <svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;font-family:system-ui,sans-serif;">
 
   <!-- Background -->
-  <rect width="760" height="480" fill="#0f1117" rx="8"/>
+  <rect width="760" height="480" fill="#F0EBE1" rx="8"/>
 
   <!-- Title -->
-  <text x="380" y="32" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">Measurement Methodology by Spend × Purchase Cycle</text>
+  <text x="380" y="32" text-anchor="middle" fill="#1C1917" font-size="14" font-weight="600">Measurement Methodology by Spend × Purchase Cycle</text>
 
   <!-- Grid background zones -->
   <!-- Bottom-left: too small / last-click -->
-  <rect x="60" y="50" width="220" height="330" fill="#1e1b2e" rx="4"/>
+  <rect x="60" y="50" width="220" height="330" fill="rgba(28,25,23,0.04)" rx="4"/>
   <!-- Bottom-right zone 1: lightweight MMM -->
-  <rect x="280" y="50" width="160" height="330" fill="#1a2332" rx="4"/>
+  <rect x="280" y="50" width="160" height="330" fill="rgba(29,78,216,0.05)" rx="4"/>
   <!-- Bottom-right zone 2: full MMM -->
-  <rect x="440" y="50" width="140" height="165" fill="#0d2416" rx="4"/>
+  <rect x="440" y="50" width="140" height="165" fill="rgba(77,124,95,0.07)" rx="4"/>
   <!-- Top-right zone: full MMM + geo -->
-  <rect x="440" y="215" width="140" height="165" fill="#0d2416" rx="4"/>
+  <rect x="440" y="215" width="140" height="165" fill="rgba(77,124,95,0.07)" rx="4"/>
   <!-- Right-most zones -->
-  <rect x="580" y="50" width="140" height="165" fill="#122010" rx="4"/>
-  <rect x="580" y="215" width="140" height="165" fill="#122010" rx="4"/>
+  <rect x="580" y="50" width="140" height="165" fill="rgba(77,124,95,0.10)" rx="4"/>
+  <rect x="580" y="215" width="140" height="165" fill="rgba(77,124,95,0.10)" rx="4"/>
 
   <!-- Y-axis: Purchase cycle -->
-  <text x="22" y="300" fill="#94a3b8" font-size="11" transform="rotate(-90,22,220)" text-anchor="middle">Purchase Cycle</text>
-  <line x1="58" y1="50" x2="58" y2="395" stroke="#334155" stroke-width="1"/>
+  <text x="22" y="300" fill="rgba(28,25,23,0.55)" font-size="11" transform="rotate(-90,22,220)" text-anchor="middle">Purchase Cycle</text>
+  <line x1="58" y1="50" x2="58" y2="395" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
 
   <!-- Y-axis labels -->
-  <text x="52" y="390" text-anchor="end" fill="#94a3b8" font-size="10">&lt; 2 weeks</text>
-  <text x="52" y="310" text-anchor="end" fill="#94a3b8" font-size="10">1–3 months</text>
-  <text x="52" y="230" text-anchor="end" fill="#94a3b8" font-size="10">3–12 months</text>
-  <text x="52" y="150" text-anchor="end" fill="#94a3b8" font-size="10">&gt; 1 year</text>
+  <text x="52" y="390" text-anchor="end" fill="rgba(28,25,23,0.55)" font-size="10">&lt; 2 weeks</text>
+  <text x="52" y="310" text-anchor="end" fill="rgba(28,25,23,0.55)" font-size="10">1–3 months</text>
+  <text x="52" y="230" text-anchor="end" fill="rgba(28,25,23,0.55)" font-size="10">3–12 months</text>
+  <text x="52" y="150" text-anchor="end" fill="rgba(28,25,23,0.55)" font-size="10">&gt; 1 year</text>
 
   <!-- Y gridlines -->
-  <line x1="58" y1="380" x2="720" y2="380" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="58" y1="298" x2="720" y2="298" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="58" y1="215" x2="720" y2="215" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="58" y1="133" x2="720" y2="133" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="58" y1="380" x2="720" y2="380" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="58" y1="298" x2="720" y2="298" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="58" y1="215" x2="720" y2="215" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="58" y1="133" x2="720" y2="133" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
 
   <!-- X-axis: Spend -->
-  <line x1="58" y1="395" x2="720" y2="395" stroke="#334155" stroke-width="1"/>
-  <text x="390" y="440" text-anchor="middle" fill="#94a3b8" font-size="11">Annual Media Spend</text>
+  <line x1="58" y1="395" x2="720" y2="395" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+  <text x="390" y="440" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="11">Annual Media Spend</text>
 
   <!-- X-axis labels -->
-  <text x="170" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">&lt; $5M</text>
-  <text x="360" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">$5M–$30M</text>
-  <text x="510" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">$30M–$150M</text>
-  <text x="650" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">&gt; $150M</text>
+  <text x="170" y="415" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">&lt; $5M</text>
+  <text x="360" y="415" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">$5M–$30M</text>
+  <text x="510" y="415" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">$30M–$150M</text>
+  <text x="650" y="415" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">&gt; $150M</text>
 
   <!-- X gridlines -->
-  <line x1="280" y1="50" x2="280" y2="395" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="440" y1="50" x2="440" y2="395" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="580" y1="50" x2="580" y2="395" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="280" y1="50" x2="280" y2="395" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="440" y1="50" x2="440" y2="395" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="580" y1="50" x2="580" y2="395" stroke="rgba(28,25,23,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
 
   <!-- Cell labels -->
   <!-- Col 1: < $5M -->
-  <text x="170" y="175" text-anchor="middle" fill="#f87171" font-size="12" font-weight="600">Experiments</text>
-  <text x="170" y="192" text-anchor="middle" fill="#94a3b8" font-size="10">or last-click</text>
-  <text x="170" y="255" text-anchor="middle" fill="#f87171" font-size="12" font-weight="600">Experiments</text>
-  <text x="170" y="272" text-anchor="middle" fill="#94a3b8" font-size="10">+ brand tracking</text>
-  <text x="170" y="338" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Lightweight MTA</text>
-  <text x="170" y="355" text-anchor="middle" fill="#94a3b8" font-size="10">+ channel tests</text>
+  <text x="170" y="175" text-anchor="middle" fill="#C2410C" font-size="12" font-weight="600">Experiments</text>
+  <text x="170" y="192" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">or last-click</text>
+  <text x="170" y="255" text-anchor="middle" fill="#C2410C" font-size="12" font-weight="600">Experiments</text>
+  <text x="170" y="272" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">+ brand tracking</text>
+  <text x="170" y="338" text-anchor="middle" fill="#D97706" font-size="12" font-weight="600">Lightweight MTA</text>
+  <text x="170" y="355" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">+ channel tests</text>
 
   <!-- Col 2: $5M-$30M -->
-  <text x="360" y="163" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="600">MMM + brand</text>
-  <text x="360" y="178" text-anchor="middle" fill="#94a3b8" font-size="10">tracking surveys</text>
-  <text x="360" y="243" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Lightweight MMM</text>
-  <text x="360" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">+ geo holdouts</text>
-  <text x="360" y="323" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">MMM + MTA</text>
-  <text x="360" y="338" text-anchor="middle" fill="#94a3b8" font-size="10">complementary</text>
+  <text x="360" y="163" text-anchor="middle" fill="#C2410C" font-size="12" font-weight="600">MMM + brand</text>
+  <text x="360" y="178" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">tracking surveys</text>
+  <text x="360" y="243" text-anchor="middle" fill="#D97706" font-size="12" font-weight="600">Lightweight MMM</text>
+  <text x="360" y="258" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">+ geo holdouts</text>
+  <text x="360" y="323" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">MMM + MTA</text>
+  <text x="360" y="338" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">complementary</text>
 
   <!-- Col 3: $30M-$150M -->
-  <text x="510" y="163" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="600">MMM (5yr) +</text>
-  <text x="510" y="178" text-anchor="middle" fill="#94a3b8" font-size="10">brand tracking</text>
-  <text x="510" y="243" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">Full MMM</text>
-  <text x="510" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">+ geo calibration</text>
-  <text x="510" y="323" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">MMM + MTA</text>
-  <text x="510" y="338" text-anchor="middle" fill="#94a3b8" font-size="10">clean room ready</text>
+  <text x="510" y="163" text-anchor="middle" fill="#C2410C" font-size="12" font-weight="600">MMM (5yr) +</text>
+  <text x="510" y="178" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">brand tracking</text>
+  <text x="510" y="243" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">Full MMM</text>
+  <text x="510" y="258" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">+ geo calibration</text>
+  <text x="510" y="323" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">MMM + MTA</text>
+  <text x="510" y="338" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">clean room ready</text>
 
   <!-- Col 4: > $150M -->
-  <text x="650" y="163" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="600">Hierarchical MMM</text>
-  <text x="650" y="178" text-anchor="middle" fill="#94a3b8" font-size="10">geo × brand × BU</text>
-  <text x="650" y="243" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">Hierarchical MMM</text>
-  <text x="650" y="258" text-anchor="middle" fill="#94a3b8" font-size="10">+ interaction terms</text>
-  <text x="650" y="323" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">Full stack</text>
-  <text x="650" y="338" text-anchor="middle" fill="#94a3b8" font-size="10">MMM + MTA + clean room</text>
+  <text x="650" y="163" text-anchor="middle" fill="#C2410C" font-size="12" font-weight="600">Hierarchical MMM</text>
+  <text x="650" y="178" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">geo × brand × BU</text>
+  <text x="650" y="243" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">Hierarchical MMM</text>
+  <text x="650" y="258" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">+ interaction terms</text>
+  <text x="650" y="323" text-anchor="middle" fill="#4D7C5F" font-size="12" font-weight="600">Full stack</text>
+  <text x="650" y="338" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">MMM + MTA + clean room</text>
 
   <!-- Industry dots (example placements) -->
-  <circle cx="170" cy="362" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="178" y="366" fill="#93c5fd" font-size="9">DTC / eComm</text>
+  <circle cx="170" cy="362" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="178" y="366" fill="#1D4ED8" font-size="9">DTC / eComm</text>
 
-  <circle cx="360" cy="340" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="368" y="344" fill="#93c5fd" font-size="9">Retail</text>
+  <circle cx="360" cy="340" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="368" y="344" fill="#1D4ED8" font-size="9">Retail</text>
 
-  <circle cx="510" cy="260" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="518" y="264" fill="#93c5fd" font-size="9">CPG</text>
+  <circle cx="510" cy="260" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="518" y="264" fill="#1D4ED8" font-size="9">CPG</text>
 
-  <circle cx="580" cy="175" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="588" y="179" fill="#93c5fd" font-size="9">Auto (OEM)</text>
+  <circle cx="580" cy="175" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="588" y="179" fill="#1D4ED8" font-size="9">Auto (OEM)</text>
 
-  <circle cx="390" cy="180" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="398" y="184" fill="#93c5fd" font-size="9">B2B SaaS</text>
+  <circle cx="390" cy="180" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="398" y="184" fill="#1D4ED8" font-size="9">B2B SaaS</text>
 
-  <circle cx="480" cy="260" r="5" fill="#60a5fa" opacity="0.8"/>
-  <text x="488" y="264" fill="#93c5fd" font-size="9">Insurance</text>
+  <circle cx="480" cy="260" r="5" fill="#1D4ED8" opacity="0.8"/>
+  <text x="488" y="264" fill="#1D4ED8" font-size="9">Insurance</text>
 
 </svg>
 </div>

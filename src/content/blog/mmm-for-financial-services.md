@@ -21,85 +21,85 @@ Most financial services companies sell multiple products with fundamentally diff
 
 <div style="overflow-x: auto; margin: 2rem 0;">
 <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:system-ui,sans-serif;">
-  <rect width="700" height="360" fill="#0f1117" rx="8"/>
-  <text x="350" y="28" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Financial Services: Product Cycle vs. Measurement Approach</text>
+  <rect width="700" height="360" fill="#F0EBE1" rx="8"/>
+  <text x="350" y="28" text-anchor="middle" fill="#1C1917" font-size="13" font-weight="600">Financial Services: Product Cycle vs. Measurement Approach</text>
 
   <!-- Header row -->
-  <rect x="20" y="45" width="175" height="30" fill="#1e293b" rx="3"/>
-  <rect x="200" y="45" width="120" height="30" fill="#1e293b" rx="3"/>
-  <rect x="325" y="45" width="130" height="30" fill="#1e293b" rx="3"/>
-  <rect x="460" y="45" width="220" height="30" fill="#1e293b" rx="3"/>
-  <text x="107" y="65" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Product</text>
-  <text x="260" y="65" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Decision cycle</text>
-  <text x="390" y="65" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Primary method</text>
-  <text x="570" y="65" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Key constraint</text>
+  <rect x="20" y="45" width="175" height="30" fill="rgba(28,25,23,0.08)" rx="3"/>
+  <rect x="200" y="45" width="120" height="30" fill="rgba(28,25,23,0.08)" rx="3"/>
+  <rect x="325" y="45" width="130" height="30" fill="rgba(28,25,23,0.08)" rx="3"/>
+  <rect x="460" y="45" width="220" height="30" fill="rgba(28,25,23,0.08)" rx="3"/>
+  <text x="107" y="65" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="11" font-weight="600">Product</text>
+  <text x="260" y="65" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="11" font-weight="600">Decision cycle</text>
+  <text x="390" y="65" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="11" font-weight="600">Primary method</text>
+  <text x="570" y="65" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="11" font-weight="600">Key constraint</text>
 
   <!-- Row 1: Credit cards -->
-  <rect x="20" y="82" width="175" height="42" fill="#1a2332" rx="3"/>
-  <rect x="200" y="82" width="120" height="42" fill="#1a2332" rx="3"/>
-  <rect x="325" y="82" width="130" height="42" fill="#1a2332" rx="3"/>
-  <rect x="460" y="82" width="220" height="42" fill="#1a2332" rx="3"/>
-  <text x="107" y="100" text-anchor="middle" fill="#e2e8f0" font-size="11">Credit cards /</text>
-  <text x="107" y="116" text-anchor="middle" fill="#e2e8f0" font-size="11">checking accounts</text>
-  <text x="260" y="107" text-anchor="middle" fill="#34d399" font-size="11">Days – 3 weeks</text>
-  <text x="390" y="100" text-anchor="middle" fill="#60a5fa" font-size="11">MTA + MMM</text>
-  <text x="390" y="116" text-anchor="middle" fill="#64748b" font-size="10">complementary</text>
-  <text x="570" y="100" text-anchor="middle" fill="#94a3b8" font-size="10">Identity graph across</text>
-  <text x="570" y="116" text-anchor="middle" fill="#94a3b8" font-size="10">devices/sessions</text>
+  <rect x="20" y="82" width="175" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="200" y="82" width="120" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="325" y="82" width="130" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="460" y="82" width="220" height="42" fill="#FFFDF9" rx="3"/>
+  <text x="107" y="100" text-anchor="middle" fill="#1C1917" font-size="11">Credit cards /</text>
+  <text x="107" y="116" text-anchor="middle" fill="#1C1917" font-size="11">checking accounts</text>
+  <text x="260" y="107" text-anchor="middle" fill="#4D7C5F" font-size="11">Days – 3 weeks</text>
+  <text x="390" y="100" text-anchor="middle" fill="#1D4ED8" font-size="11">MTA + MMM</text>
+  <text x="390" y="116" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">complementary</text>
+  <text x="570" y="100" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Identity graph across</text>
+  <text x="570" y="116" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">devices/sessions</text>
 
   <!-- Row 2: Auto/personal loans -->
-  <rect x="20" y="130" width="175" height="42" fill="#161f2e" rx="3"/>
-  <rect x="200" y="130" width="120" height="42" fill="#161f2e" rx="3"/>
-  <rect x="325" y="130" width="130" height="42" fill="#161f2e" rx="3"/>
-  <rect x="460" y="130" width="220" height="42" fill="#161f2e" rx="3"/>
-  <text x="107" y="148" text-anchor="middle" fill="#e2e8f0" font-size="11">Auto / personal</text>
-  <text x="107" y="164" text-anchor="middle" fill="#e2e8f0" font-size="11">loans</text>
-  <text x="260" y="155" text-anchor="middle" fill="#fbbf24" font-size="11">2 – 8 weeks</text>
-  <text x="390" y="148" text-anchor="middle" fill="#60a5fa" font-size="11">MMM primary</text>
-  <text x="390" y="164" text-anchor="middle" fill="#64748b" font-size="10">+ geo experiments</text>
-  <text x="570" y="148" text-anchor="middle" fill="#94a3b8" font-size="10">Rate environment</text>
-  <text x="570" y="164" text-anchor="middle" fill="#94a3b8" font-size="10">dominates signal</text>
+  <rect x="20" y="130" width="175" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="200" y="130" width="120" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="325" y="130" width="130" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="460" y="130" width="220" height="42" fill="#F0EBE1" rx="3"/>
+  <text x="107" y="148" text-anchor="middle" fill="#1C1917" font-size="11">Auto / personal</text>
+  <text x="107" y="164" text-anchor="middle" fill="#1C1917" font-size="11">loans</text>
+  <text x="260" y="155" text-anchor="middle" fill="#D97706" font-size="11">2 – 8 weeks</text>
+  <text x="390" y="148" text-anchor="middle" fill="#1D4ED8" font-size="11">MMM primary</text>
+  <text x="390" y="164" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">+ geo experiments</text>
+  <text x="570" y="148" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Rate environment</text>
+  <text x="570" y="164" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">dominates signal</text>
 
   <!-- Row 3: Mortgage -->
-  <rect x="20" y="178" width="175" height="42" fill="#1a2332" rx="3"/>
-  <rect x="200" y="178" width="120" height="42" fill="#1a2332" rx="3"/>
-  <rect x="325" y="178" width="130" height="42" fill="#1a2332" rx="3"/>
-  <rect x="460" y="178" width="220" height="42" fill="#1a2332" rx="3"/>
-  <text x="107" y="196" text-anchor="middle" fill="#e2e8f0" font-size="11">Mortgage /</text>
-  <text x="107" y="212" text-anchor="middle" fill="#e2e8f0" font-size="11">home equity</text>
-  <text x="260" y="203" text-anchor="middle" fill="#fb923c" font-size="11">2 – 6 months</text>
-  <text x="390" y="196" text-anchor="middle" fill="#fbbf24" font-size="11">MMM + pipeline</text>
-  <text x="390" y="212" text-anchor="middle" fill="#64748b" font-size="10">as outcome var</text>
-  <text x="570" y="196" text-anchor="middle" fill="#94a3b8" font-size="10">Rate sensitivity</text>
-  <text x="570" y="212" text-anchor="middle" fill="#94a3b8" font-size="10">overwhelms media effect</text>
+  <rect x="20" y="178" width="175" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="200" y="178" width="120" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="325" y="178" width="130" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="460" y="178" width="220" height="42" fill="#FFFDF9" rx="3"/>
+  <text x="107" y="196" text-anchor="middle" fill="#1C1917" font-size="11">Mortgage /</text>
+  <text x="107" y="212" text-anchor="middle" fill="#1C1917" font-size="11">home equity</text>
+  <text x="260" y="203" text-anchor="middle" fill="#C2410C" font-size="11">2 – 6 months</text>
+  <text x="390" y="196" text-anchor="middle" fill="#D97706" font-size="11">MMM + pipeline</text>
+  <text x="390" y="212" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">as outcome var</text>
+  <text x="570" y="196" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Rate sensitivity</text>
+  <text x="570" y="212" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">overwhelms media effect</text>
 
   <!-- Row 4: Insurance -->
-  <rect x="20" y="226" width="175" height="42" fill="#161f2e" rx="3"/>
-  <rect x="200" y="226" width="120" height="42" fill="#161f2e" rx="3"/>
-  <rect x="325" y="226" width="130" height="42" fill="#161f2e" rx="3"/>
-  <rect x="460" y="226" width="220" height="42" fill="#161f2e" rx="3"/>
-  <text x="107" y="244" text-anchor="middle" fill="#e2e8f0" font-size="11">Insurance</text>
-  <text x="107" y="260" text-anchor="middle" fill="#e2e8f0" font-size="11">(P&amp;C / Life)</text>
-  <text x="260" y="251" text-anchor="middle" fill="#fb923c" font-size="11">Weeks – years</text>
-  <text x="390" y="244" text-anchor="middle" fill="#fbbf24" font-size="11">MMM + brand</text>
-  <text x="390" y="260" text-anchor="middle" fill="#64748b" font-size="10">tracking</text>
-  <text x="570" y="244" text-anchor="middle" fill="#94a3b8" font-size="10">Offline channels</text>
-  <text x="570" y="260" text-anchor="middle" fill="#94a3b8" font-size="10">dominate acquisition</text>
+  <rect x="20" y="226" width="175" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="200" y="226" width="120" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="325" y="226" width="130" height="42" fill="#F0EBE1" rx="3"/>
+  <rect x="460" y="226" width="220" height="42" fill="#F0EBE1" rx="3"/>
+  <text x="107" y="244" text-anchor="middle" fill="#1C1917" font-size="11">Insurance</text>
+  <text x="107" y="260" text-anchor="middle" fill="#1C1917" font-size="11">(P&amp;C / Life)</text>
+  <text x="260" y="251" text-anchor="middle" fill="#C2410C" font-size="11">Weeks – years</text>
+  <text x="390" y="244" text-anchor="middle" fill="#D97706" font-size="11">MMM + brand</text>
+  <text x="390" y="260" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">tracking</text>
+  <text x="570" y="244" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Offline channels</text>
+  <text x="570" y="260" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">dominate acquisition</text>
 
   <!-- Row 5: Wealth/investment -->
-  <rect x="20" y="274" width="175" height="42" fill="#1a2332" rx="3"/>
-  <rect x="200" y="274" width="120" height="42" fill="#1a2332" rx="3"/>
-  <rect x="325" y="274" width="130" height="42" fill="#1a2332" rx="3"/>
-  <rect x="460" y="274" width="220" height="42" fill="#1a2332" rx="3"/>
-  <text x="107" y="292" text-anchor="middle" fill="#e2e8f0" font-size="11">Wealth / investment</text>
-  <text x="107" y="308" text-anchor="middle" fill="#e2e8f0" font-size="11">accounts</text>
-  <text x="260" y="299" text-anchor="middle" fill="#f87171" font-size="11">Months – years</text>
-  <text x="390" y="292" text-anchor="middle" fill="#fb923c" font-size="11">Brand tracking +</text>
-  <text x="390" y="308" text-anchor="middle" fill="#64748b" font-size="10">long-window MMM</text>
-  <text x="570" y="292" text-anchor="middle" fill="#94a3b8" font-size="10">Trust / relationship-</text>
-  <text x="570" y="308" text-anchor="middle" fill="#94a3b8" font-size="10">driven, hard to model</text>
+  <rect x="20" y="274" width="175" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="200" y="274" width="120" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="325" y="274" width="130" height="42" fill="#FFFDF9" rx="3"/>
+  <rect x="460" y="274" width="220" height="42" fill="#FFFDF9" rx="3"/>
+  <text x="107" y="292" text-anchor="middle" fill="#1C1917" font-size="11">Wealth / investment</text>
+  <text x="107" y="308" text-anchor="middle" fill="#1C1917" font-size="11">accounts</text>
+  <text x="260" y="299" text-anchor="middle" fill="#C2410C" font-size="11">Months – years</text>
+  <text x="390" y="292" text-anchor="middle" fill="#C2410C" font-size="11">Brand tracking +</text>
+  <text x="390" y="308" text-anchor="middle" fill="rgba(28,25,23,0.4)" font-size="10">long-window MMM</text>
+  <text x="570" y="292" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">Trust / relationship-</text>
+  <text x="570" y="308" text-anchor="middle" fill="rgba(28,25,23,0.55)" font-size="10">driven, hard to model</text>
 
-  <text x="350" y="340" text-anchor="middle" fill="#475569" font-size="10">Each product line requires its own measurement program. Running one aggregate model produces wrong answers for all of them.</text>
+  <text x="350" y="340" text-anchor="middle" fill="rgba(28,25,23,0.45)" font-size="10">Each product line requires its own measurement program. Running one aggregate model produces wrong answers for all of them.</text>
 </svg>
 </div>
 

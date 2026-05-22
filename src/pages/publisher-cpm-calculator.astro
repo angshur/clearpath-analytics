@@ -1,0 +1,733 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Publisher CPM Gap Calculator — See What Your Authentication Rate Is Costing You"
+  description="Enter your monthly pageviews and current authentication rate. See exactly what your ad revenue looks like at 20%, 35%, and 50% authentication — using IAB/eMarketer CPM benchmarks."
+  keywords={['publisher CPM calculator', 'authentication rate revenue', 'publisher ad revenue', 'RampID publisher', 'authenticated traffic CPM']}
+>
+
+<style>
+  /* ── HERO ─── */
+  .hero {
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--border);
+    padding: 72px 48px 64px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 640px; margin: 0 auto; }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+  .hero .meta { font-size: 13px; color: var(--ink-dim); }
+
+  /* ── WRAPPER ─── */
+  .calc-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* ── INPUT CARD ─── */
+  .input-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    margin-bottom: 32px;
+  }
+  .input-card h2 {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+
+  .field-group { margin-bottom: 24px; }
+  .field-group:last-of-type { margin-bottom: 32px; }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .field-hint {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 400;
+  }
+
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: white;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .input-wrap:focus-within { border-color: var(--ink); }
+  .input-prefix, .input-suffix {
+    padding: 0 14px;
+    font-size: 15px;
+    color: var(--ink-dim);
+    background: var(--cream);
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border-right: 1.5px solid var(--border);
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .input-suffix {
+    border-right: none;
+    border-left: 1.5px solid var(--border);
+  }
+  .field-input {
+    flex: 1;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 16px;
+    font-family: var(--font-body);
+    color: var(--ink);
+    border: none;
+    background: transparent;
+    min-width: 0;
+  }
+  .field-input:focus { outline: none; }
+
+  /* slider */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 100px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--amber);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider-val {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 38px;
+    text-align: right;
+  }
+
+  .cpm-note {
+    background: var(--amber-xlight);
+    border: 1px solid rgba(217,119,6,0.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .cpm-note strong { color: var(--ink); }
+
+  .calc-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 3px 3px 0 var(--amber);
+  }
+  .calc-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--amber);
+  }
+  .calc-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--amber);
+  }
+
+  /* ── RESULTS ─── */
+  #results { display: none; animation: fadeUp 0.35s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .results-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .results-sub {
+    font-size: 15px;
+    color: var(--ink-mid);
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  /* scenario grid */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .scenario-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .scenario-card.current {
+    border-color: rgba(28,25,23,0.3);
+  }
+  .scenario-card.highlight {
+    border-color: var(--amber);
+    box-shadow: 3px 3px 0 var(--amber);
+  }
+  .scenario-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .scenario-card.highlight .scenario-label { color: var(--amber); }
+  .scenario-auth {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .scenario-auth-label {
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .scenario-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 14px;
+  }
+  .scenario-revenue {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .scenario-revenue-label {
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .scenario-uplift {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sage);
+    background: var(--sage-light);
+    border-radius: 4px;
+    padding: 3px 8px;
+    display: inline-block;
+  }
+  .scenario-uplift.neutral { color: var(--ink-dim); background: var(--cream-dark); }
+
+  /* breakdown bar */
+  .breakdown-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .breakdown-card h3 {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label {
+    font-size: 13px;
+    color: var(--ink-mid);
+    width: 160px;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 10px;
+    background: var(--cream-dark);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.6s ease;
+  }
+  .bar-fill.amber { background: var(--amber); }
+  .bar-fill.ink { background: var(--ink); opacity: 0.3; }
+  .bar-amount {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 72px;
+    text-align: right;
+  }
+
+  /* insight box */
+  .insight-box {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 4px 4px 0 var(--amber);
+  }
+  .insight-box h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .insight-box p {
+    font-size: 15px;
+    color: rgba(250,247,242,0.7);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .insight-box p strong { color: var(--cream); }
+
+  /* assumptions */
+  .assumptions {
+    font-size: 12px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    padding: 16px 20px;
+    background: var(--cream-dark);
+    border-radius: var(--radius-sm);
+    margin-bottom: 32px;
+  }
+  .assumptions strong { color: var(--ink-mid); }
+
+  /* email capture */
+  .email-capture {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px;
+  }
+  .email-capture h2 { font-size: 22px; margin-bottom: 8px; }
+  .email-capture p {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .email-row { display: flex; gap: 10px; }
+  .email-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: var(--font-body);
+    background: white;
+    color: var(--ink);
+    transition: border-color 0.15s;
+    min-width: 0;
+  }
+  .email-input:focus { outline: none; border-color: var(--ink); }
+  .email-success {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: var(--sage-light);
+    border: 1px solid rgba(77,124,95,0.25);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--sage);
+  }
+
+  /* recalc */
+  .recalc-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--ink-dim);
+    cursor: pointer;
+    padding: 0;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    transition: color 0.15s;
+  }
+  .recalc-btn:hover { color: var(--ink); }
+
+  /* playbook CTA */
+  .playbook-cta {
+    background: var(--amber-xlight);
+    border: 1.5px solid rgba(217,119,6,0.25);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .playbook-cta-text h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .playbook-cta-text p {
+    font-size: 14px;
+    color: var(--ink-mid);
+    margin: 0;
+  }
+  .playbook-cta a {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    background: var(--amber);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .playbook-cta a:hover { opacity: 0.88; }
+
+  @media (max-width: 680px) {
+    .hero { padding: 48px 20px 40px; }
+    .calc-wrapper { padding: 32px 20px 72px; }
+    .input-card { padding: 24px 20px; }
+    .scenario-grid { grid-template-columns: repeat(2, 1fr); }
+    .breakdown-card { padding: 24px 20px; }
+    .bar-label { width: 120px; font-size: 12px; }
+    .email-row { flex-direction: column; }
+    .email-capture { padding: 24px 20px; }
+    .playbook-cta { flex-direction: column; }
+  }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="section-label">Publisher Revenue Calculator</span>
+    <h1>What is your authentication rate costing you?</h1>
+    <p>Enter your pageviews and current authentication rate. See what your ad revenue looks like at 20%, 35%, and 50% authentication — using IAB/eMarketer CPM benchmarks.</p>
+    <p class="meta">Takes 30 seconds. No login required to see your results.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<div class="calc-wrapper">
+
+  <!-- INPUTS -->
+  <div class="input-card" id="inputCard">
+    <h2>About your publication</h2>
+
+    <div class="field-group">
+      <label for="pageviews">Monthly pageviews</label>
+      <span class="field-hint">Total pages loaded per month across your site (find this in Google Analytics or your analytics tool)</span>
+      <div class="input-wrap">
+        <input type="number" class="field-input" id="pageviews" placeholder="e.g. 2500000" min="10000" step="10000" />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="authSlider">Current authentication rate</label>
+      <span class="field-hint">Percentage of your sessions where the user is logged in (authenticated). Industry average for general news publishers is 8–15%.</span>
+      <div class="slider-row">
+        <input type="range" id="authSlider" min="1" max="60" value="12" step="1" />
+        <span class="slider-val" id="authVal">12%</span>
+      </div>
+    </div>
+
+    <div class="cpm-note">
+      <strong>CPM assumptions used:</strong> Unauthenticated impressions — $2 CPM (IAB midpoint, $1–3 range). Authenticated programmatic — $7 CPM (midpoint, $6–8 range). Premium direct IO — $25 CPM (available at 35%+ authentication, applied to top 20% of authenticated inventory). Sources: IAB, eMarketer, LiveRamp publisher benchmarks.
+    </div>
+
+    <br />
+    <button class="calc-btn" id="calcBtn">Calculate my revenue gap →</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+
+    <p class="results-headline" id="resultsHeadline"></p>
+    <p class="results-sub" id="resultsSub"></p>
+
+    <!-- SCENARIO CARDS -->
+    <div class="scenario-grid" id="scenarioGrid"></div>
+
+    <!-- BREAKDOWN BAR CHART -->
+    <div class="breakdown-card">
+      <h3>Revenue breakdown at 50% authentication</h3>
+      <div id="breakdownBars"></div>
+    </div>
+
+    <!-- INSIGHT -->
+    <div class="insight-box" id="insightBox"></div>
+
+    <!-- PLAYBOOK CTA -->
+    <div class="playbook-cta">
+      <div class="playbook-cta-text">
+        <h3>The Authentication Rate Playbook</h3>
+        <p>Five mechanisms to increase your authentication rate — with a decision framework for registration walls vs. hard paywalls.</p>
+      </div>
+      <a href="/publisher-authentication-playbook">Read the playbook →</a>
+    </div>
+
+    <!-- ASSUMPTIONS -->
+    <div class="assumptions" id="assumptionsText"></div>
+
+    <!-- EMAIL CAPTURE -->
+    <div class="email-capture">
+      <h2>Get your results + the playbook.</h2>
+      <p>Enter your email and we'll send your full revenue breakdown alongside the Authentication Rate Playbook — five mechanisms to close the gap, with a decision framework for your specific situation.</p>
+      <div class="email-row">
+        <input type="email" class="email-input" id="captureEmail" placeholder="you@yourpublication.com" />
+        <button class="btn-primary" id="captureSubmit" type="button">Send it →</button>
+      </div>
+      <div class="email-success" id="captureSuccess">
+        ✓ On its way. Check your inbox.
+      </div>
+    </div>
+
+    <button class="recalc-btn" id="recalcBtn">← Change my inputs</button>
+  </div>
+
+</div>
+
+<script>
+  const slider = document.getElementById('authSlider') as HTMLInputElement;
+  const authVal = document.getElementById('authVal');
+  const calcBtn = document.getElementById('calcBtn');
+  const inputCard = document.getElementById('inputCard');
+  const resultsEl = document.getElementById('results');
+
+  slider.addEventListener('input', () => {
+    authVal!.textContent = slider.value + '%';
+  });
+
+  function fmt(n: number): string {
+    if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M';
+    if (n >= 1_000) return '$' + Math.round(n / 1_000).toLocaleString() + 'K';
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function fmtDelta(n: number): string {
+    const sign = n >= 0 ? '+' : '';
+    if (Math.abs(n) >= 1_000_000) return sign + '$' + (n / 1_000_000).toFixed(2) + 'M/mo';
+    if (Math.abs(n) >= 1_000) return sign + '$' + Math.round(n / 1_000).toLocaleString() + 'K/mo';
+    return sign + '$' + Math.round(n).toLocaleString() + '/mo';
+  }
+
+  function calcRevenue(pageviews: number, authRate: number) {
+    // Assumptions
+    const adsPerPage = 3;
+    const impressions = pageviews * adsPerPage;
+    const authImpressions = impressions * authRate;
+    const unauthImpressions = impressions * (1 - authRate);
+
+    // At 35%+ auth rate, top 20% of auth inventory qualifies for direct IO
+    const directIOFraction = authRate >= 0.35 ? 0.20 : 0;
+    const directImpressions = authImpressions * directIOFraction;
+    const programmaticAuthImpressions = authImpressions - directImpressions;
+
+    const unauthCPM = 2;
+    const authProgCPM = 7;
+    const directCPM = 25;
+
+    const unauthRev = (unauthImpressions / 1000) * unauthCPM;
+    const authProgRev = (programmaticAuthImpressions / 1000) * authProgCPM;
+    const directRev = (directImpressions / 1000) * directCPM;
+    const total = unauthRev + authProgRev + directRev;
+
+    return { total, unauthRev, authProgRev, directRev, impressions, authImpressions, unauthImpressions };
+  }
+
+  calcBtn!.addEventListener('click', () => {
+    const pvRaw = (document.getElementById('pageviews') as HTMLInputElement).value;
+    const pv = parseInt(pvRaw.replace(/,/g, ''));
+    if (!pv || pv < 10000) {
+      const inp = document.getElementById('pageviews') as HTMLInputElement;
+      inp.style.borderColor = 'var(--rust)';
+      inp.focus();
+      setTimeout(() => { inp.style.borderColor = ''; }, 2000);
+      return;
+    }
+
+    const currentAuth = parseInt(slider.value) / 100;
+    const scenarios = [
+      { label: 'Current', auth: currentAuth, isCurrent: true },
+      { label: '20% auth', auth: 0.20 },
+      { label: '35% auth', auth: 0.35 },
+      { label: '50% auth', auth: 0.50, isHighlight: true },
+    ];
+
+    const current = calcRevenue(pv, currentAuth);
+    const at50 = calcRevenue(pv, 0.50);
+
+    // Headline
+    const gap = at50.total - current.total;
+    document.getElementById('resultsHeadline')!.textContent =
+      `At your current ${Math.round(currentAuth * 100)}% authentication rate, you're leaving ${fmt(gap)} per month on the table.`;
+    document.getElementById('resultsSub')!.textContent =
+      `Based on ${(pv / 1_000_000).toFixed(1)}M monthly pageviews and IAB/eMarketer CPM benchmarks. Scenarios below show what happens as your authentication rate increases.`;
+
+    // Scenario cards
+    const grid = document.getElementById('scenarioGrid')!;
+    grid.innerHTML = scenarios.map(s => {
+      const r = calcRevenue(pv, s.auth);
+      const delta = r.total - current.total;
+      const upliftHtml = s.isCurrent
+        ? `<span class="scenario-uplift neutral">Baseline</span>`
+        : `<span class="scenario-uplift">${fmtDelta(delta)}</span>`;
+      return `
+        <div class="scenario-card ${s.isCurrent ? 'current' : ''} ${s.isHighlight ? 'highlight' : ''}">
+          <span class="scenario-label">${s.label}</span>
+          <div class="scenario-auth">${Math.round(s.auth * 100)}%</div>
+          <span class="scenario-auth-label">authenticated</span>
+          <div class="scenario-divider"></div>
+          <div class="scenario-revenue">${fmt(r.total)}</div>
+          <span class="scenario-revenue-label">per month</span>
+          ${upliftHtml}
+        </div>
+      `;
+    }).join('');
+
+    // Breakdown bars
+    const maxBar = at50.total;
+    const bars = [
+      { label: 'Unauthenticated ($2 CPM)', amount: at50.unauthRev, cls: 'ink' },
+      { label: 'Auth programmatic ($7 CPM)', amount: at50.authProgRev, cls: 'amber' },
+      { label: 'Direct IO ($25 CPM)', amount: at50.directRev, cls: 'amber' },
+    ];
+    document.getElementById('breakdownBars')!.innerHTML = bars.map(b => `
+      <div class="bar-row">
+        <span class="bar-label">${b.label}</span>
+        <div class="bar-track">
+          <div class="bar-fill ${b.cls}" style="width: ${Math.round((b.amount / maxBar) * 100)}%"></div>
+        </div>
+        <span class="bar-amount">${fmt(b.amount)}/mo</span>
+      </div>
+    `).join('');
+
+    // Insight
+    const authPct = Math.round(currentAuth * 100);
+    let insight = '';
+    if (authPct < 15) {
+      insight = `At ${authPct}% authentication, the majority of your inventory is selling blind — no identity signal, no audience targeting, $2 CPM. A 10-point increase in authentication rate would be worth <strong>${fmtDelta(calcRevenue(pv, currentAuth + 0.10).total - current.total)}</strong> at your current traffic level. Progressive registration and newsletter-to-login bridges are the fastest levers at this stage.`;
+    } else if (authPct < 35) {
+      insight = `At ${authPct}% authentication you're in the middle tier — better than most, but below the 35% threshold where direct IO deals become viable. Crossing that threshold opens up $25 CPM inventory that would represent <strong>${fmtDelta(calcRevenue(pv, 0.35).total - current.total)}</strong> in additional monthly revenue for your site. Loyalty mechanics and value-exchange prompts are the most effective levers from here.`;
+    } else {
+      insight = `At ${authPct}% authentication you're already above the threshold for direct IO eligibility — you're in the top tier of publishers for identity signal. The revenue opportunity is in optimizing your direct IO relationships and increasing the share of authenticated inventory you sell directly rather than through programmatic. The gap to 50% is worth <strong>${fmtDelta(at50.total - current.total)}</strong> in additional monthly revenue.`;
+    }
+    document.getElementById('insightBox')!.innerHTML = `<h3>What this means for you</h3><p>${insight}</p>`;
+
+    // Assumptions
+    const impressions = pv * 3;
+    document.getElementById('assumptionsText')!.innerHTML =
+      `<strong>Methodology:</strong> Total ad impressions estimated at 3 per pageview (${(impressions / 1_000_000).toFixed(1)}M impressions/month). CPM rates sourced from IAB, eMarketer, and LiveRamp publisher benchmarks (2024–2025): unauthenticated $1–3 range, authenticated programmatic $6–8 range, premium direct IO $20–40 range. Direct IO applied to top 20% of authenticated inventory at authentication rates ≥35%. Scenarios are illustrative — actual CPMs vary by content vertical, audience quality, and sales execution.`;
+
+    // Store for email
+    (window as any).__calcResults = {
+      pageviews: pv,
+      currentAuth: Math.round(currentAuth * 100),
+      currentRevenue: fmt(current.total),
+      at35Revenue: fmt(calcRevenue(pv, 0.35).total),
+      at50Revenue: fmt(at50.total),
+      gap: fmtDelta(gap),
+    };
+
+    // Show results
+    inputCard!.style.display = 'none';
+    resultsEl!.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Email capture
+  document.getElementById('captureSubmit')!.addEventListener('click', async () => {
+    const email = (document.getElementById('captureEmail') as HTMLInputElement).value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('captureEmail')!.focus();
+      return;
+    }
+    const btn = document.getElementById('captureSubmit')!;
+    btn.textContent = 'Sending…';
+    btn.setAttribute('disabled', 'true');
+
+    const r = (window as any).__calcResults || {};
+    const msg = `CPM Gap Calculator results\n\nPageviews: ${r.pageviews?.toLocaleString()}\nCurrent auth rate: ${r.currentAuth}%\nCurrent monthly revenue: ${r.currentRevenue}\nAt 35% auth: ${r.at35Revenue}\nAt 50% auth: ${r.at50Revenue}\nRevenue gap to 50%: ${r.gap}`;
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'CPM Calculator Lead', email, company: '', message: msg }),
+      });
+    } catch(_) {}
+
+    document.getElementById('captureSuccess')!.style.display = 'block';
+    btn.textContent = 'Sent ✓';
+  });
+
+  // Recalculate
+  document.getElementById('recalcBtn')!.addEventListener('click', () => {
+    resultsEl!.style.display = 'none';
+    inputCard!.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</Layout>

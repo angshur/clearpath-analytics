@@ -1,0 +1,734 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="The Authentication Rate Playbook — How Publishers Turn Login Into Revenue"
+  description="The CPM math behind authentication rate, five mechanisms to increase it, and a decision framework for registration walls vs. hard paywalls. For VP Revenue, digital publishers, and publisher CEOs."
+  keywords={['publisher authentication rate', 'authenticated traffic', 'publisher revenue', 'registration wall', 'paywall strategy', 'RampID publisher', 'publisher first-party data']}
+>
+
+<style>
+  /* ── HERO ─── */
+  .hero {
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--border);
+    padding: 72px 48px 64px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; }
+  .hero-meta {
+    font-size: 13px;
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 5px; }
+  .hero h1 {
+    font-size: clamp(30px, 4.5vw, 52px);
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+  .hero .dek {
+    font-size: 19px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 28px;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .hero-cta-label {
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  /* ── CONTENT ─── */
+  .content-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* pull quote / stat boxes */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .stat-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  /* section headings */
+  .section-divider {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 48px 0;
+  }
+  .section-num {
+    font-family: var(--font-accent);
+    font-size: 17px;
+    color: var(--amber);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* mechanism cards */
+  .mechanism-list { display: flex; flex-direction: column; gap: 20px; margin: 28px 0; }
+  .mechanism-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px 28px 24px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .mechanism-num {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .mechanism-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .mechanism-card p {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .mechanism-card p:last-child { margin-bottom: 0; }
+  .mechanism-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  .tag-fast { background: var(--sage-light); color: var(--sage); }
+  .tag-medium { background: var(--amber-light); color: var(--amber); }
+  .tag-strategic { background: var(--blue-light); color: var(--blue); }
+
+  /* CPM math table */
+  .cpm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+  .cpm-table th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .cpm-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+  }
+  .cpm-table tr:last-child td { border-bottom: none; }
+  .cpm-table tr:nth-child(even) td { background: var(--cream-dark); }
+  .cpm-table .highlight-row td {
+    background: var(--amber-xlight);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .cpm-table .total-row td {
+    background: var(--ink);
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* decision framework */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .decision-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .decision-card h3 {
+    font-size: 17px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .decision-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .decision-card li {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .decision-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-size: 12px;
+  }
+  .decision-card.recommended { border-color: var(--amber); }
+  .decision-card.recommended h3 { color: var(--amber); }
+
+  /* pull quote */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 4px 0 4px 24px;
+    margin: 32px 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* inline note */
+  .inline-note {
+    background: var(--cream-dark);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin: 20px 0;
+  }
+  .inline-note strong { color: var(--ink); }
+
+  /* benchmark table */
+  .benchmark-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .benchmark-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+    border-bottom: 1.5px solid var(--border);
+  }
+  .benchmark-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--ink-mid);
+  }
+  .benchmark-table tr:last-child td { border-bottom: none; }
+  .good { color: var(--sage); font-weight: 600; }
+  .mid-perf { color: var(--amber); font-weight: 600; }
+  .low { color: var(--rust); font-weight: 600; }
+
+  /* CTA box */
+  .cta-box {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 36px;
+    margin: 48px 0 0;
+    box-shadow: 4px 4px 0 var(--amber);
+  }
+  .cta-box h2 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .cta-box p {
+    font-size: 15px;
+    color: rgba(250,247,242,0.68);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .email-row { display: flex; gap: 10px; }
+  .email-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1.5px solid rgba(250,247,242,0.25);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: var(--font-body);
+    background: rgba(255,255,255,0.07);
+    color: var(--cream);
+    transition: border-color 0.15s;
+    min-width: 0;
+  }
+  .email-input::placeholder { color: rgba(250,247,242,0.35); }
+  .email-input:focus { outline: none; border-color: var(--amber); }
+  .email-success {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(77,124,95,0.2);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--cream);
+  }
+
+  /* calculator link */
+  .calc-link-box {
+    background: var(--amber-xlight);
+    border: 1.5px solid rgba(217,119,6,0.25);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .calc-link-box p {
+    font-size: 14px;
+    color: var(--ink-mid);
+    margin: 0;
+  }
+  .calc-link-box a {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    background: var(--amber);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .calc-link-box a:hover { opacity: 0.88; }
+
+  .prose h2 {
+    font-size: clamp(20px, 3vw, 26px);
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+  .prose h3 { font-size: 19px; margin-top: 32px; margin-bottom: 12px; }
+  .prose p { font-size: 16px; line-height: 1.8; color: var(--ink-mid); margin-bottom: 18px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); }
+
+  @media (max-width: 680px) {
+    .hero { padding: 48px 20px 40px; }
+    .content-wrap { padding: 32px 20px 72px; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .decision-grid { grid-template-columns: 1fr; }
+    .mechanism-card { grid-template-columns: 1fr; gap: 8px; }
+    .mechanism-num { font-size: 16px; }
+    .email-row { flex-direction: column; }
+    .cta-box { padding: 24px 20px; }
+    .calc-link-box { flex-direction: column; }
+  }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <span>For: VP Revenue · Head of Digital · Publisher/CEO</span>
+      <span>Read time: 18 min</span>
+    </div>
+    <h1>The Authentication Rate Playbook</h1>
+    <p class="dek">Authentication rate is the single most important revenue lever most publishers aren't actively managing. This is the CPM math, five mechanisms to move it, and the decision framework for what to build first.</p>
+    <div class="hero-cta-row">
+      <a href="/publisher-cpm-calculator" class="btn-primary">Calculate my revenue gap →</a>
+      <span class="hero-cta-label">See your specific numbers in 30 seconds</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap prose">
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">3–5×</div>
+      <div class="stat-label">CPM premium for authenticated vs. unauthenticated impressions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">8–15%</div>
+      <div class="stat-label">Average authentication rate at general news publishers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">35%</div>
+      <div class="stat-label">Authentication threshold for direct IO deal eligibility</div>
+    </div>
+  </div>
+
+  <p>Most publishers think about authentication as a subscription mechanic — you log in to read, or you pay. That's too narrow. Authentication is first and foremost an advertising revenue lever, and for ad-supported publishers it's the most important infrastructure investment you can make right now.</p>
+
+  <p>Here's the core reason: <strong>authenticated impressions generate RampIDs. Unauthenticated impressions don't.</strong> A RampID-bearing impression is one that a DSP can match against a brand's audience segment and bid $6–8 CPM for. An unauthenticated impression gets bid on contextually — $1–3 CPM if you're lucky, and that's going down as signal degrades further.</p>
+
+  <p>The math compounds quickly. At 2.5 million monthly pageviews and 12% authentication, roughly 88% of your inventory is selling blind. Raising that to 35% — the threshold for direct IO deal eligibility — changes the revenue picture materially.</p>
+
+  <div class="calc-link-box">
+    <p>Want to see this math applied to your specific pageview volume and current authentication rate?</p>
+    <a href="/publisher-cpm-calculator">Run the calculator →</a>
+  </div>
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 1</span>
+  <h2>The CPM Math — What Authentication Rate Actually Does to Revenue</h2>
+
+  <p>Publishers often quote a single blended CPM — total ad revenue divided by total impressions. This hides the real story. Your inventory isn't one product. It's three products with very different prices.</p>
+
+  <table class="cpm-table">
+    <thead>
+      <tr>
+        <th>Impression type</th>
+        <th>Identity signal</th>
+        <th>CPM range</th>
+        <th>Who bids</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Unauthenticated</td>
+        <td>None (cookieless)</td>
+        <td>$1–3</td>
+        <td>Contextual buyers only</td>
+      </tr>
+      <tr>
+        <td>Authenticated (programmatic)</td>
+        <td>RampID envelope</td>
+        <td>$6–8</td>
+        <td>Brand audience buyers, DSPs</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Authenticated (direct IO)</td>
+        <td>RampID + audience guarantee</td>
+        <td>$20–40</td>
+        <td>Agency direct deals</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="inline-note"><strong>Source:</strong> IAB, eMarketer, LiveRamp publisher benchmarks (2024–2025). CPM ranges vary by content vertical, audience quality, and deal structure. General news publishers tend toward the lower end; lifestyle, finance, and B2B verticals command higher CPMs for the same identity signal.</p>
+
+  <p>Direct IO deals become available once you can guarantee a meaningful authenticated audience to an advertiser. In practice, that threshold is around 35% authentication rate — below that, you don't have enough authenticated inventory to fill a meaningful campaign flight. Above 35%, you can have a real commercial conversation with a media buyer.</p>
+
+  <div class="pull-quote">
+    <p>"Your blended CPM is an average of three very different products. Authentication rate determines which one you're mostly selling."</p>
+  </div>
+
+  <p>To see what this means for your specific traffic: the revenue at different authentication scenarios is driven almost entirely by shifting inventory from the $2 CPM bucket to the $7 CPM bucket, and eventually to the $25 CPM bucket. A 10-point shift in authentication rate doesn't feel like much operationally. At 2.5 million monthly pageviews it's worth roughly $40–60K in annual revenue. At 10 million pageviews it's $160–240K.</p>
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 2</span>
+  <h2>What Authentication Rate Actually Means — and How to Measure It</h2>
+
+  <p>Authentication rate is the percentage of your total page sessions where the user is logged in with a known identity. Not unique users. Not subscribers. Sessions where you have a confirmed email address associated with the visit.</p>
+
+  <p>The relevant measurement is <strong>session-level authentication rate</strong>: of all sessions on your site this month, what percentage had an authenticated user? This is the number that determines what percentage of your ad impressions can generate a RampID.</p>
+
+  <p>Three things matter for this measurement:</p>
+
+  <p><strong>First visit vs. returning sessions:</strong> A user might authenticate on visit 3 but not on visits 1 and 2. The CPM impact is only on the sessions where they're logged in. Progressive authentication strategies that push login earlier in the engagement cycle are more valuable than ones that only prompt at article 10.</p>
+
+  <p><strong>Device-level authentication:</strong> A user authenticated on desktop isn't authenticated on mobile unless they've logged in there too. Cross-device authentication is harder to drive but more valuable because mobile traffic is a large share of most publishers' inventory.</p>
+
+  <p><strong>Cookie persistence:</strong> On most browsers, a logged-in session persists across visits as long as the user doesn't explicitly log out. The authentication rate you're measuring includes these persistent sessions. When a user logs in once and stays logged in for six months, every session in that window is authenticated.
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 3</span>
+  <h2>Five Mechanisms to Increase Authentication Rate</h2>
+
+  <p>Every publisher's path to higher authentication is different, but the mechanisms that move the needle are well-understood. Here are the five that drive the most impact, roughly ordered by speed of implementation.</p>
+
+  <div class="mechanism-list">
+
+    <div class="mechanism-card">
+      <div class="mechanism-num">01</div>
+      <div>
+        <h3>Newsletter-to-login bridge</h3>
+        <p>Your email list is your highest-intent authenticated audience — they've already given you their email and confirmed they want your content. Most publishers don't connect the newsletter relationship to a site login.</p>
+        <p>The bridge: when a newsletter subscriber clicks through to your site, auto-authenticate them using the email link token. This requires a small technical integration between your email platform and your CMS auth system, but it moves your newsletter audience from zero authentication to near-100% authentication on newsletter-driven sessions without any user friction.</p>
+        <p>If your newsletter drives 20% of traffic and you have 80,000 subscribers with a 25% click rate, that's 20,000 authenticated sessions per month you're currently leaving unauthenticated.</p>
+        <span class="mechanism-tag tag-fast">Fast to implement</span>
+      </div>
+    </div>
+
+    <div class="mechanism-card">
+      <div class="mechanism-num">02</div>
+      <div>
+        <h3>Progressive registration — value exchange at the right moment</h3>
+        <p>Registration prompts that ask for an email in exchange for something specific at a high-intent moment outperform blanket registration walls by 3–5x on conversion rate. The key is matching the prompt to the user's current intent.</p>
+        <p>High-converting exchange moments:</p>
+        <p>— "Save this article" prompt at article 3+ (engaged reader signal)<br>
+        — "Get this topic in your inbox" after a deep-scroll on a category page<br>
+        — "Unlock our data/interactive" on a high-value piece<br>
+        — "Continue reading" after a soft meter trigger (not a hard stop — a prompt with a clear value proposition)</p>
+        <p>The exchange has to be real. "Sign up for our newsletter" is not a value exchange. "Get this in-depth guide + our weekly briefing on this topic" is.</p>
+        <span class="mechanism-tag tag-fast">Fast to implement</span>
+      </div>
+    </div>
+
+    <div class="mechanism-card">
+      <div class="mechanism-num">03</div>
+      <div>
+        <h3>Loyalty and personalization — give authentication a reason to persist</h3>
+        <p>The challenge with most authentication programs is that once users log in, there's no ongoing reason to stay logged in. They close the tab, reopen the browser a week later, and they're back to unauthenticated.</p>
+        <p>Persistent authentication requires a reason to stay logged in — features or content that only exist in the logged-in state. Reading history, saved articles, a personalized feed, topic preferences, commenting. These aren't subscription features — they're authenticated-user features that reward the login relationship without requiring payment.</p>
+        <p>Publishers that have invested in personalization infrastructure see authentication rates 2–3x higher than those with a bare CMS. The investment is higher, but the authentication is stickier and the RampID you generate on session 1 carries through to session 50.</p>
+        <span class="mechanism-tag tag-strategic">Strategic investment</span>
+      </div>
+    </div>
+
+    <div class="mechanism-card">
+      <div class="mechanism-num">04</div>
+      <div>
+        <h3>Commenting and community access</h3>
+        <p>Commenting is one of the oldest authentication drivers and still one of the most effective for editorial publishers. A user who wants to participate in the community has a strong motivation to authenticate — and comment-reading (not just commenting) is more motivated when users are invested in the community.</p>
+        <p>The underused variation: authenticated access to a reader community, Slack, or Discord. Higher friction than commenting, but higher intent and much stronger authentication persistence. Users who've joined a community check back repeatedly in an authenticated state.</p>
+        <p>This works best for publishers with strong editorial voices and engaged communities. It doesn't work for commodity news aggregators where there's no community loyalty to leverage.</p>
+        <span class="mechanism-tag tag-medium">Medium-term build</span>
+      </div>
+    </div>
+
+    <div class="mechanism-card">
+      <div class="mechanism-num">05</div>
+      <div>
+        <h3>Metered access — soft meter before the gate</h3>
+        <p>A soft meter — "you've read 3 of your 5 free articles this month" — creates urgency without requiring immediate authentication. The meter creates a reason to register before hitting a hard wall.</p>
+        <p>The design choices that matter most in meter implementation:<br>
+        — Start counting at article 1, not article 3. Earlier counting means earlier prompts.<br>
+        — Show the meter counter on every article, not just at the limit. Ambient awareness drives earlier registration.<br>
+        — Offer a grace path: "Sign in to continue" rather than "Subscribe to continue." Registration is lower friction than payment and still delivers a RampID.<br>
+        — Don't reset the meter immediately on registration. The meter is the reason they registered — use it.</p>
+        <p>Metered access is most effective for publishers where content consumption rate varies — daily readers hit the meter, occasional readers don't. If your median reader visits once a month, a 5-article meter won't trigger for most of your traffic.</p>
+        <span class="mechanism-tag tag-medium">Medium-term build</span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 4</span>
+  <h2>The Registration Wall vs. Hard Paywall Decision Framework</h2>
+
+  <p>These are structurally different strategies with different revenue models, traffic implications, and implementation complexity. Most publishers should not treat them as the same decision.</p>
+
+  <div class="decision-grid">
+
+    <div class="decision-card recommended">
+      <h3>Registration wall (free with login)</h3>
+      <ul>
+        <li>Maximizes authenticated ad revenue — full traffic, full CPM upgrade</li>
+        <li>Lower friction — email exchange, not credit card</li>
+        <li>Works with ad-supported business model</li>
+        <li>Best for publishers with broad audience and category/contextual advertiser base</li>
+        <li>Builds the authenticated audience base required for direct IO deals</li>
+        <li>Conversion rates 5–15% of triggered users</li>
+        <li>SEO impact: minimal if implemented correctly with bot access maintained</li>
+      </ul>
+    </div>
+
+    <div class="decision-card">
+      <h3>Hard paywall</h3>
+      <ul>
+        <li>Subscription revenue per authenticated user is higher</li>
+        <li>Traffic typically drops 40–70% when implemented — those impressions disappear</li>
+        <li>Works when content is differentiated enough that a meaningful segment will pay</li>
+        <li>Best for publishers with strong niche authority (financial data, B2B intelligence, specialist editorial)</li>
+        <li>CPM on remaining traffic is higher, but volume is much lower</li>
+        <li>Requires a real editorial differentiation thesis — can't be implemented as a revenue fix for undifferentiated content</li>
+        <li>SEO impact: significant — paywalled content drops out of most rankings</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p>The hybrid most publishers land on: soft meter with registration wall as the gate (not a paywall), premium content or features behind a paid tier. This captures the full authenticated traffic benefit while reserving a subscription offer for the highest-intent segment.</p>
+
+  <div class="pull-quote">
+    <p>"A registration wall that converts 8% of prompted users at full traffic is almost always worth more than a hard paywall that retains 30% of traffic as subscribers."</p>
+  </div>
+
+  <p>The exception is publishers with highly differentiated data, analysis, or proprietary content that can't be found elsewhere. The Wall Street Journal, Bloomberg, specialist B2B publications — these have content that people will pay for because there's no substitute. For general news and lifestyle publishers, a paywall is usually a revenue decline disguised as a strategy.</p>
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 5</span>
+  <h2>Realistic Targets by Publisher Type</h2>
+
+  <p>Authentication rate benchmarks vary significantly by publisher type, engagement model, and content category. Here's what's realistic to aim for over 12–18 months with active authentication programs in place.</p>
+
+  <table class="benchmark-table">
+    <thead>
+      <tr>
+        <th>Publisher type</th>
+        <th>Starting avg.</th>
+        <th>Achievable at 12 mo.</th>
+        <th>Best-in-class</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>General news, national</td>
+        <td>8–12%</td>
+        <td class="mid-perf">22–28%</td>
+        <td class="good">35–45% (NYT, The Atlantic)</td>
+      </tr>
+      <tr>
+        <td>General news, regional/local</td>
+        <td>5–10%</td>
+        <td class="mid-perf">15–22%</td>
+        <td class="good">28–35%</td>
+      </tr>
+      <tr>
+        <td>Lifestyle / enthusiast</td>
+        <td>10–18%</td>
+        <td class="mid-perf">25–35%</td>
+        <td class="good">45–60%</td>
+      </tr>
+      <tr>
+        <td>Finance / business</td>
+        <td>15–25%</td>
+        <td class="good">35–50%</td>
+        <td class="good">55–70%</td>
+      </tr>
+      <tr>
+        <td>B2B / trade</td>
+        <td>20–35%</td>
+        <td class="good">40–60%</td>
+        <td class="good">65–80%</td>
+      </tr>
+      <tr>
+        <td>Newsletters (click-through)</td>
+        <td>60–80%</td>
+        <td class="good">75–90%</td>
+        <td class="good">90%+</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Newsletter-driven traffic is already near-fully authenticated if you implement the newsletter-to-login bridge (Mechanism 1). The rest of your traffic is the real challenge.</p>
+
+  <p>The 35% threshold for direct IO deal viability is achievable for most publishers within 12–18 months with a serious authentication program. It requires investment in at least 2–3 of the five mechanisms above, not just one.</p>
+
+  <hr class="section-divider" />
+  <span class="section-num">Part 6</span>
+  <h2>Measuring the Lift — What to Track and When</h2>
+
+  <p>Authentication rate programs are slow to show full results and easy to misread in the first 90 days. Here's what to measure and how to interpret it.</p>
+
+  <p><strong>Session-level authentication rate (weekly).</strong> Your primary metric. Track week-over-week. Don't expect linear growth — authentication programs often show a spike at launch (the existing engaged users who authenticate quickly) followed by a plateau before growth resumes as the program reaches newer or less engaged users.</p>
+
+  <p><strong>Blended CPM vs. authenticated CPM (monthly).</strong> Track both. Blended CPM should rise as authenticated share grows. Authenticated CPM should stay stable or rise as your audience quality becomes more demonstrable to buyers. If authenticated CPM is declining, the issue is in your sales execution or audience composition, not your authentication program.</p>
+
+  <p><strong>Registration conversion rate by trigger (monthly).</strong> For each authentication mechanism you've deployed — newsletter bridge, soft meter, value exchange — track how many users complete registration as a percentage of how many were prompted. Optimize the trigger placement and copy before adding more mechanisms.</p>
+
+  <p><strong>Match rate from LiveRamp (quarterly).</strong> If you're working with LiveRamp, your match rate — the percentage of authenticated emails that resolve to a RampID — is a proxy for audience quality. A match rate below 50% suggests a significant share of your authenticated audience hasn't appeared elsewhere in LiveRamp's graph. This is common for local and niche publishers but worth tracking over time.</p>
+
+  <p><strong>Direct IO deal conversion (6–12 months).</strong> Once you cross 35%, start tracking inbound and outbound direct deal conversations. The revenue shift from programmatic to direct IO typically takes 6–12 months to show up in deal volume because media buyer planning cycles are long. Publish your authentication rate on your media kit page as soon as it's credible.</p>
+
+  <div class="inline-note">
+    <strong>One thing most publishers get wrong:</strong> measuring authentication rate as a percentage of unique users rather than sessions. A user who authenticates once and never returns has authenticated — but generates no ongoing RampID impressions. Session-level authentication is the metric that maps to ad revenue. Unique authenticated users is a vanity metric.
+  </div>
+
+  <hr class="section-divider" />
+
+  <h2>The One-Paragraph Summary</h2>
+
+  <p>Authentication rate is the percentage of your sessions where a user is logged in — and it determines whether your ad inventory generates a RampID and gets bid on at $7 CPM or sells contextually at $2 CPM. For most publishers, the gap between current and achievable authentication rate represents the largest untapped revenue lever available without increasing traffic. The fastest path to moving it: connect your newsletter to site login (immediate, high-value sessions), deploy progressive registration prompts at high-intent moments, and build toward the 35% threshold where direct IO deals become commercially viable. A registration wall is almost always more valuable than a hard paywall for ad-supported publishers — you keep the traffic and upgrade its value. Track session-level authentication rate weekly, not unique authenticated users. The revenue impact compounds over 12–18 months, not 90 days.</p>
+
+  <!-- CALCULATOR CTA -->
+  <div class="calc-link-box" style="margin-top:40px;">
+    <p>Want to see what your specific numbers look like at 20%, 35%, and 50% authentication?</p>
+    <a href="/publisher-cpm-calculator">Run the revenue calculator →</a>
+  </div>
+
+  <!-- EMAIL CAPTURE -->
+  <div class="cta-box">
+    <h2>Get a consultation on your authentication program.</h2>
+    <p>We work with publishers on authentication strategy, first-party data infrastructure, and clean room implementation. If you're trying to understand where to start — or why your current program isn't moving the needle — enter your email and we'll set up a call.</p>
+    <div class="email-row">
+      <input type="email" class="email-input" id="playbookEmail" placeholder="you@yourpublication.com" />
+      <button class="btn-primary" id="playbookSubmit" type="button" style="background:var(--amber); color:white; border:none; padding:10px 20px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; flex-shrink:0;">Get in touch →</button>
+    </div>
+    <div class="email-success" id="playbookSuccess">
+      ✓ Got it. We'll be in touch within one business day.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('playbookSubmit')!.addEventListener('click', async () => {
+    const email = (document.getElementById('playbookEmail') as HTMLInputElement).value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('playbookEmail')!.focus();
+      return;
+    }
+    const btn = document.getElementById('playbookSubmit')!;
+    btn.textContent = 'Sending…';
+    btn.setAttribute('disabled', 'true');
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Authentication Playbook Lead',
+          email,
+          company: '',
+          message: 'Downloaded the Authentication Rate Playbook and requested a consultation.',
+        }),
+      });
+    } catch(_) {}
+
+    document.getElementById('playbookSuccess')!.style.display = 'block';
+    btn.textContent = 'Sent ✓';
+  });
+</script>
+
+</Layout>

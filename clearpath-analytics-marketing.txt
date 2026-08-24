@@ -1,0 +1,62 @@
+ One-liner:                                                                                                                                                                                                        
+  Clearpath Analytics was a marketing measurement consultancy helping CMOs get clarity on which channels were actually driving revenue — attribution, MMM, incrementality, and automated reporting, delivered as    
+  fixed-scope engagements.                                                                                                                                                                                          
+                                                                                                                                                                                                                    
+  ---                                                                                                                                                                                                               
+  Prompt for other chats:                                                                                                                                                                                           
+                                                                                                                                                                                                                    
+  Project: Clearpath Analytics (legacy — marketing measurement focus)                                                                                                                                               
+  GitHub branch: legacy/marketing-measurement (angshur/clearpath-analytics)
+                                              
+  Clearpath Analytics was the original brand positioning for Angshuman Rudra's
+  consulting practice — focused on marketing data clarity for CMOs and marketing                                                                                                                                    
+  leaders. The core problem it solved: fragmented data across platforms, no clean                                                                                                                                   
+  attribution, analysts spending their week pulling reports instead of doing analysis.                                                                                                                              
+                                                                                                                                                                                                                    
+  POSITIONING                                                                                                                                                                                                       
+  "Finally know which marketing is working — and prove it to your CFO."                                                                                                                                             
+  Target audience: CMOs and marketing leaders at mid-market companies running                                                                                                                                       
+  paid across 4–8 platforms with no clean source of truth.                                                                                                                                                          
+                                                                                                                                                                                                                    
+  THE THREE PROBLEMS IT ADDRESSED                                                                                                                                                                                   
+  1. The CFO meeting — Google says ROAS 4.2, Meta says 3.8, CRM disagrees,                                                                                                                                          
+     no clean answer when asked which channel to cut                                                                                                                                                                
+  2. The reporting tax — best analyst spends Tue–Thu pulling data from 8                                                                                                                                            
+     platforms, deck is outdated by Friday                                                                                                                                                                          
+  3. The budget question — next quarter planning with last quarter's data,                                                                                                                                          
+     not confident enough to stake a $300K reallocation on it                                                                                                                                                       
+                                                                                                                                                                                                                    
+  NINE SERVICE OFFERINGS (fixed-scope, priced)                                                                                                                                                                      
+  Foundation tier:                                                                                                                                                                                                  
+    - Marketing Data Audit ($2,000–$3,000)                                                                                                                                                                          
+    - Omni-Channel Dashboard ($3,000–$6,000)                                                                                                                                                                        
+  Measurement tier:                                                                                                                                                                                                 
+    - Attribution Modeling ($5,000–$10,000)                                                                                                                                                                         
+    - Media Mix Modeling ($8,000–$15,000)                                                                                                                                                                           
+    - Incrementality Testing ($6,000–$12,000)                                                                                                                                                                       
+  Automation tier:                                                                                                                                                                                                  
+    - Automated Reporting ($2,000–$4,000)                                                                                                                                                                           
+  AI tier:
+    - AI Stack Design ($5,000–$10,000)                                                                                                                                                                              
+    - Agentic Reporting Workflows ($4,000–$8,000)           
+    - AI-Powered Analytics ($6,000–$12,000)                                                                                                                                                                         
+  Ongoing: AI Ops Retainer ($2,500–$8,000/mo)               
+                                                                                                                                                                                                                    
+  TECH STACK MENTIONED                    
+  dbt, Snowflake, BigQuery, Google Ads API, Meta API, GA4, Salesforce,                                                                                                                                              
+  Claude AI, Python, Airbyte                                                                                                                                                                                        
+                                                                                                                                                                                                                    
+  SITE STRUCTURE (legacy)                                                                                                                                                                                           
+  - / — homepage: hero with benchmark widget, "Sound familiar?" problem section,                                                                                                                                    
+    "Three questions every CMO needs answered", 9-card services grid,
+    "How we build it" tech section, about, blog preview, contact CTA                                                                                                                                                
+  - /audit — interactive AI automation quiz with scoring    
+  - /data-engineering — data engineering service page                                                                                                                                                               
+  - /semantic-layer — semantic layer consulting page                                                                                                                                                                
+  - /ai — AI consulting page                                                                                                                                                                                        
+  - /blog — 8 posts on marketing data and AI systems                                                                                                                                                                
+                                                                                                                                                                                                                    
+  DESIGN SYSTEM (same as current site — do not change)                                                                                                                                                              
+  Warm off-white (#FAF9F7 bg), amber (#D97706) accent, Lora serif headlines,                                                                                                                                        
+  DM Sans body, Caveat for section labels/accents. Offset 4px shadows.                                                                                                                                              
+  Single 768px breakpoint.                       

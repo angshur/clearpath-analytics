@@ -1,0 +1,47 @@
+⏺ One-liner:                                                                                                                                                                                                        
+  Clearpath is Angshuman Rudra's frontier AI consulting brand — helping marketing and data teams design the agent architecture, measurement layer, and data infrastructure for the AI transition.                   
+                                                                                                                                                                                                                    
+  ---                                                                                                                                                                                                               
+  Prompt for other chats:                                                                                                                                                                                           
+                                                                                                                                                                                                                    
+  Project: Clearpath (clearpath-analytics.vercel.app)
+                                                                                                                                                                                                                    
+  Clearpath is the personal consulting brand of Angshuman Rudra — a frontier AI
+  consultant helping marketing and data teams navigate the AI transition. The
+  positioning is "practitioner, not just advisor": someone who has built production                                                                                                                                 
+  AI systems at scale and is still actively building.                                                                                                                                                               
+                                                                                                                                                                                                                    
+  BACKGROUND                                                                                                                                                                                                        
+  - 10 years as founding PM at TapClicks: 200+ data connectors, production AI agent                                                                                                                                 
+    systems, ETL pipelines processing $10B+ in ad spend annually                                                                                                                                                    
+  - Prior: Yahoo, Adobe, Xilinx                                                                                                                                                                                     
+  - Forbes Technology Council, Cornell MBA, MS Computer Science                                                                                                                                                     
+  - Active builder: SaaSMatchup (live), Agent Playbook (building), Clearpath Ventures                                                                                                                               
+                                                                                                                                                                                                                    
+  POSITIONING                                                                                                                                                                                                       
+  Not marketing analytics. Frontier AI consulting — specifically for marketing and                                                                                                                                  
+  data orgs figuring out how to go agent-native. The five service lines are:                                                                                                                                        
+  1. AI Transition Roadmap — 90-day path to agent-native operations                                                                                                                                                 
+  2. Agent Architecture for Marketing Teams — orchestration, governance, automation                                                                                                                                 
+  3. Marketing Measurement Modernization — attribution/MMM/incrementality rebuilt                                                                                                                                   
+     for AI agents                                                                                                                                                                                                  
+  4. Data Engineering & Semantic Layer — pipelines and context layer for AI                                                                                                                                         
+  5. Speaking & Workshops — "The AI-Native Marketing Stack" keynote/workshop                                                                                                                                        
+                                                                                                                                                                                                                    
+  TECH STACK                                                                                                                                                                                                        
+  Astro 5 + static output, deployed on Vercel (GitHub: angshur/clearpath-analytics)                                                                                                                                 
+  Design system: warm off-white (#FAF9F7 bg), amber (#D97706) accent, Lora serif                                                                                                                                    
+  headlines, DM Sans body. Do not change colors, fonts, or spacing rhythm.                                                                                                                                          
+                                                                                                                                                                                                                    
+  SITE STRUCTURE                                                                                                                                                                                                    
+  - / — homepage (hero, thesis, services list, "what I'm building", about, blog, contact)                                                                                                                           
+  - /blog — 8 posts (keep URLs, don't touch)                                                                                                                                                                        
+  - /services/ai-transition, /agent-architecture, /measurement, /speaking — stubs                                                                                                                                   
+  - /services/data-engineering → redirects to /data-engineering (old page, keep live)                                                                                                                               
+  - /data-engineering, /semantic-layer, /ai, /audit — old pages, leave untouched                                                                                                                                    
+  - /api/contact — Resend-powered contact form, keep handler intact                                                                                                                                                 
+                                                                                                                                                                                                                    
+  PRIMARY GOALS OF THE SITE                                                                                                                                                                                         
+  1. Email capture / contact form submissions                                                                                                                                                                       
+  2. Establish frontier AI credibility                                                                                                                                                                              
+  3. Surface the five service lines (no pricing on homepage)  
